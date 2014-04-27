@@ -43,7 +43,7 @@ rule
   
   expression
     : comments
-    | PROGRAM_NAME '=' STRING   { ProgramName.new val[2]      }
+    | PROGRAM_NAME '=' STRING   { ProgramName.new val[2] }
     | define_section            { DefineSection.new val[0].downcase.to_sym }
     | definition
     | assignment

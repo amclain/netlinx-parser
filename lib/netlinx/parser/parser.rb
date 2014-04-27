@@ -347,7 +347,7 @@ module_eval(<<'.,.,', 'parser.y', 40)
 
 module_eval(<<'.,.,', 'parser.y', 45)
   def _reduce_9(val, _values)
-     ProgramName.new val[2]      
+     ProgramName.new val[2] 
   end
 .,.,
 
