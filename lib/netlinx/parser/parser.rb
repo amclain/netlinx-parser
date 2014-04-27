@@ -12,7 +12,7 @@ require 'netlinx/parser/nodes'
 module NetLinx
   class Parser < Racc::Parser
 
-module_eval(<<'...end parser.y/module_eval...', 'parser.y', 54)
+module_eval(<<'...end parser.y/module_eval...', 'parser.y', 81)
 
   def initialize data
     @data = data
@@ -34,44 +34,69 @@ module_eval(<<'...end parser.y/module_eval...', 'parser.y', 54)
 ##### State transition tables begin ###
 
 racc_action_table = [
-     5,     6,     5,     8,     9,    10 ]
+     5,    20,    18,    21,    22,    23,   nil,   nil,   nil,   nil,
+   nil,   nil,   nil,     5,   nil,   nil,   nil,   nil,   nil,   nil,
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,     8,     9,    10,
+   nil,    11,   nil,    12,    13,    14,    15,    16,    17,     7,
+     8,     9,    10,   nil,    11,   nil,    12,    13,    14,    15,
+    16,    17,     7 ]
 
 racc_action_check = [
-     0,     1,     2,     5,     6,     8 ]
+     0,     4,     1,     7,    18,    21,   nil,   nil,   nil,   nil,
+   nil,   nil,   nil,     2,   nil,   nil,   nil,   nil,   nil,   nil,
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,     0,     0,     0,
+   nil,     0,   nil,     0,     0,     0,     0,     0,     0,     0,
+     2,     2,     2,   nil,     2,   nil,     2,     2,     2,     2,
+     2,     2,     2 ]
 
 racc_action_pointer = [
-   -40,     1,   -38,   nil,   nil,   -62,     4,   nil,    -1,   nil,
-   nil ]
+    -7,     2,     6,   nil,    -6,   nil,   nil,   -63,   nil,   nil,
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,     4,   nil,
+   nil,    -1,   nil,   nil ]
 
 racc_action_default = [
-    -2,    -8,    -1,    -4,    -6,    -8,    -8,    -3,    -8,    11,
-    -7 ]
+    -2,   -21,    -1,    -4,    -8,    -7,    -9,   -21,   -11,   -12,
+   -13,   -14,   -15,   -16,   -17,   -18,   -19,   -20,   -21,    -3,
+    -6,   -21,    24,   -10 ]
 
 racc_goto_table = [
-     3,     2,     7,     1 ]
+     3,     2,    19,     1 ]
 
 racc_goto_check = [
      3,     2,     3,     1 ]
 
 racc_goto_pointer = [
-   nil,     3,     1,     0,   nil ]
+   nil,     3,     1,     0,   nil,   nil ]
 
 racc_goto_default = [
-   nil,   nil,   nil,   nil,     4 ]
+   nil,   nil,   nil,   nil,     4,     6 ]
 
 racc_reduce_table = [
   0, 0, :racc_error,
-  1, 68, :_reduce_1,
-  0, 68, :_reduce_2,
-  2, 69, :_reduce_3,
-  1, 69, :_reduce_4,
-  0, 69, :_reduce_5,
-  1, 70, :_reduce_none,
-  3, 71, :_reduce_7 ]
+  1, 69, :_reduce_1,
+  0, 69, :_reduce_2,
+  2, 70, :_reduce_3,
+  1, 70, :_reduce_4,
+  0, 70, :_reduce_5,
+  2, 72, :_reduce_none,
+  1, 72, :_reduce_none,
+  1, 71, :_reduce_none,
+  1, 71, :_reduce_none,
+  3, 73, :_reduce_10,
+  1, 73, :_reduce_11,
+  1, 73, :_reduce_12,
+  1, 73, :_reduce_13,
+  1, 73, :_reduce_14,
+  1, 73, :_reduce_15,
+  1, 73, :_reduce_16,
+  1, 73, :_reduce_17,
+  1, 73, :_reduce_18,
+  1, 73, :_reduce_19,
+  1, 73, :_reduce_20 ]
 
-racc_reduce_n = 8
+racc_reduce_n = 21
 
-racc_shift_n = 11
+racc_shift_n = 24
 
 racc_token_table = {
   false => 0,
@@ -81,68 +106,69 @@ racc_token_table = {
   :NUMBER => 4,
   :DECIMAL => 5,
   :STRING => 6,
-  :CHAR => 7,
-  :WIDECHAR => 8,
-  :INTEGER => 9,
-  :SINTEGER => 10,
-  :LONG => 11,
-  :SLONG => 12,
-  :FLOAT => 13,
-  :DOUBLE => 14,
-  :DEV => 15,
-  :DEVCHAN => 16,
-  :IF => 17,
-  :ELSE => 18,
-  :SELECT => 19,
-  :ACTIVE => 20,
-  :SWITCH => 21,
-  :CASE => 22,
-  :FOR => 23,
-  :WHILE => 24,
-  :MEDIUM_WHILE => 25,
-  :LONG_WHILE => 26,
-  :BREAK => 27,
-  :DEFAULT => 28,
-  :RETURN => 29,
-  :DEFINE_CALL => 30,
-  :DEFINE_COMBINE => 31,
-  :DEFINE_CONNECT_LEVEL => 32,
-  :DEFINE_CONSTANT => 33,
-  :DEFINE_DEVICE => 34,
-  :DEFINE_EVENT => 35,
-  :DEFINE_FUNCTION => 36,
-  :DEFINE_LATCHING => 37,
-  :DEFINE_MODULE => 38,
-  :DEFINE_MUTUALLY_EXCLUSIVE => 39,
-  :DEFINE_PROGRAM => 40,
-  :DEFINE_START => 41,
-  :DEFINE_TOGGLING => 42,
-  :DEFINE_TYPE => 43,
-  :DEFINE_VARIABLE => 44,
-  :PROGRAM_NAME => 45,
-  :BUTTON_EVENT => 46,
-  :CHANNEL_EVENT => 47,
-  :DATA_EVENT => 48,
-  :LEVEL_EVENT => 49,
-  :REBUILD_EVENT => 50,
-  "." => 51,
-  "!" => 52,
-  "*" => 53,
-  "/" => 54,
-  "+" => 55,
-  "-" => 56,
-  ">" => 57,
-  ">=" => 58,
-  "<" => 59,
-  "<=" => 60,
-  "==" => 61,
-  "!=" => 62,
-  "&&" => 63,
-  "||" => 64,
-  "=" => 65,
-  "," => 66 }
+  :COMMENT => 7,
+  :CHAR => 8,
+  :WIDECHAR => 9,
+  :INTEGER => 10,
+  :SINTEGER => 11,
+  :LONG => 12,
+  :SLONG => 13,
+  :FLOAT => 14,
+  :DOUBLE => 15,
+  :DEV => 16,
+  :DEVCHAN => 17,
+  :IF => 18,
+  :ELSE => 19,
+  :SELECT => 20,
+  :ACTIVE => 21,
+  :SWITCH => 22,
+  :CASE => 23,
+  :FOR => 24,
+  :WHILE => 25,
+  :MEDIUM_WHILE => 26,
+  :LONG_WHILE => 27,
+  :BREAK => 28,
+  :DEFAULT => 29,
+  :RETURN => 30,
+  :DEFINE_CALL => 31,
+  :DEFINE_COMBINE => 32,
+  :DEFINE_CONNECT_LEVEL => 33,
+  :DEFINE_CONSTANT => 34,
+  :DEFINE_DEVICE => 35,
+  :DEFINE_EVENT => 36,
+  :DEFINE_FUNCTION => 37,
+  :DEFINE_LATCHING => 38,
+  :DEFINE_MODULE => 39,
+  :DEFINE_MUTUALLY_EXCLUSIVE => 40,
+  :DEFINE_PROGRAM => 41,
+  :DEFINE_START => 42,
+  :DEFINE_TOGGLING => 43,
+  :DEFINE_TYPE => 44,
+  :DEFINE_VARIABLE => 45,
+  :PROGRAM_NAME => 46,
+  :BUTTON_EVENT => 47,
+  :CHANNEL_EVENT => 48,
+  :DATA_EVENT => 49,
+  :LEVEL_EVENT => 50,
+  :REBUILD_EVENT => 51,
+  "." => 52,
+  "!" => 53,
+  "*" => 54,
+  "/" => 55,
+  "+" => 56,
+  "-" => 57,
+  ">" => 58,
+  ">=" => 59,
+  "<" => 60,
+  "<=" => 61,
+  "==" => 62,
+  "!=" => 63,
+  "&&" => 64,
+  "||" => 65,
+  "=" => 66,
+  "," => 67 }
 
-racc_nt_base = 67
+racc_nt_base = 68
 
 racc_use_result_var = false
 
@@ -170,6 +196,7 @@ Racc_token_to_s_table = [
   "NUMBER",
   "DECIMAL",
   "STRING",
+  "COMMENT",
   "CHAR",
   "WIDECHAR",
   "INTEGER",
@@ -234,7 +261,8 @@ Racc_token_to_s_table = [
   "program",
   "expressions",
   "expression",
-  "define_program" ]
+  "comments",
+  "define_section" ]
 
 Racc_debug_parser = false
 
@@ -256,7 +284,7 @@ module_eval(<<'.,.,', 'parser.y', 29)
 
 module_eval(<<'.,.,', 'parser.y', 33)
   def _reduce_3(val, _values)
-     val.compact 
+     val.flatten.compact 
   end
 .,.,
 
@@ -274,9 +302,75 @@ module_eval(<<'.,.,', 'parser.y', 35)
 
 # reduce 6 omitted
 
-module_eval(<<'.,.,', 'parser.y', 43)
-  def _reduce_7(val, _values)
-     ProgramName.new val[2] 
+# reduce 7 omitted
+
+# reduce 8 omitted
+
+# reduce 9 omitted
+
+module_eval(<<'.,.,', 'parser.y', 50)
+  def _reduce_10(val, _values)
+     ProgramName.new val[2]      
+  end
+.,.,
+
+module_eval(<<'.,.,', 'parser.y', 51)
+  def _reduce_11(val, _values)
+     DefineConstant.new          
+  end
+.,.,
+
+module_eval(<<'.,.,', 'parser.y', 52)
+  def _reduce_12(val, _values)
+     DefineDevice.new            
+  end
+.,.,
+
+module_eval(<<'.,.,', 'parser.y', 53)
+  def _reduce_13(val, _values)
+     DefineEvent.new             
+  end
+.,.,
+
+module_eval(<<'.,.,', 'parser.y', 54)
+  def _reduce_14(val, _values)
+     DefineLatching.new          
+  end
+.,.,
+
+module_eval(<<'.,.,', 'parser.y', 55)
+  def _reduce_15(val, _values)
+     DefineMutuallyExclusive.new 
+  end
+.,.,
+
+module_eval(<<'.,.,', 'parser.y', 56)
+  def _reduce_16(val, _values)
+     DefineProgram.new           
+  end
+.,.,
+
+module_eval(<<'.,.,', 'parser.y', 57)
+  def _reduce_17(val, _values)
+     DefineStart.new             
+  end
+.,.,
+
+module_eval(<<'.,.,', 'parser.y', 58)
+  def _reduce_18(val, _values)
+     DefineToggling.new          
+  end
+.,.,
+
+module_eval(<<'.,.,', 'parser.y', 59)
+  def _reduce_19(val, _values)
+     DefineType.new              
+  end
+.,.,
+
+module_eval(<<'.,.,', 'parser.y', 60)
+  def _reduce_20(val, _values)
+     DefineVariable.new          
   end
 .,.,
 

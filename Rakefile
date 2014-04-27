@@ -9,7 +9,7 @@ task :compile do
   Dir['**/*.rl'].each { |file| system "ragel -R #{file}" }
   
   # Compile RACC.
-  Dir['**/*.y'].each { |file| system "racc #{file} -o #{file.gsub(/\.(.*)/, '')}.rb" }
+  Dir['**/*.y'].each { |file| system "racc #{file} -o #{file.gsub(/\.(.*)/, '')}.rb -v" }
 end
 
 # Run tests.

@@ -1,7 +1,7 @@
 class NetLinx::Parser
   
 token IDENTIFIER
-token DPS NUMBER DECIMAL STRING
+token DPS NUMBER DECIMAL STRING COMMENT
 token CHAR WIDECHAR INTEGER SINTEGER LONG SLONG FLOAT DOUBLE DEV DEVCHAN
 token IF ELSE IF ELSE SELECT ACTIVE SWITCH CASE FOR WHILE MEDIUM_WHILE LONG_WHILE BREAK DEFAULT RETURN
 token DEFINE_CALL DEFINE_COMBINE DEFINE_CONNECT_LEVEL DEFINE_CONSTANT DEFINE_DEVICE DEFINE_EVENT DEFINE_FUNCTION DEFINE_LATCHING DEFINE_MODULE DEFINE_MUTUALLY_EXCLUSIVE DEFINE_PROGRAM DEFINE_START DEFINE_TOGGLING DEFINE_TYPE DEFINE_VARIABLE PROGRAM_NAME
@@ -31,18 +31,45 @@ rule
     ;
     
   expressions
-    : expressions expression { val.compact }
+    : expressions expression { val.flatten.compact }
     | expression             { val }
     | /* none */             { [] }
     ;
   
+  comments
+    : comments COMMENT
+    | COMMENT
+    ;
+  
   expression
-    : define_program
+    : comments
+    | define_section
     ;
-    
-  define_program
-    : DEFINE_PROGRAM '=' STRING { ProgramName.new val[2] }
+  
+  
+  define_section
+    : PROGRAM_NAME '=' STRING   { ProgramName.new val[2]      }
+    | DEFINE_CONSTANT           { DefineConstant.new          }
+    | DEFINE_DEVICE             { DefineDevice.new            }
+    | DEFINE_EVENT              { DefineEvent.new             }
+    | DEFINE_LATCHING           { DefineLatching.new          }
+    | DEFINE_MUTUALLY_EXCLUSIVE { DefineMutuallyExclusive.new }
+    | DEFINE_PROGRAM            { DefineProgram.new           }
+    | DEFINE_START              { DefineStart.new             }
+    | DEFINE_TOGGLING           { DefineToggling.new          }
+    | DEFINE_TYPE               { DefineType.new              }
+    | DEFINE_VARIABLE           { DefineVariable.new          }
     ;
+  
+  /*
+  define_section
+    : DEFINE_CALL
+    | DEFINE_COMBINE
+    | DEFINE_CONNECT_LEVEL
+    | DEFINE_FUNCTION
+    | DEFINE_MODULE
+    ;
+  */
 
 end
 

@@ -18,6 +18,19 @@ module NetLinx
     
     class ProgramName < LiteralNode; end
     
+    # DEFINE sections
+    
+    class DefineConstant         ; end
+    class DefineDevice           ; end
+    class DefineEvent            ; end
+    class DefineLatching         ; end
+    class DefineMutuallyExclusive; end
+    class DefineProgram          ; end
+    class DefineStart            ; end
+    class DefineToggling         ; end
+    class DefineType             ; end
+    class DefineVariable         ; end
+    
   end
 end
   
