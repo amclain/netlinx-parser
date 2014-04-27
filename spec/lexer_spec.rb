@@ -5,19 +5,29 @@ describe NetLinx::Lexer do
   
   subject { NetLinx::Lexer.new code }
   
-  let(:code) {
-<<-CODE
-
-PROGRAM_NAME = 'test'
-
-CODE
-  }
   
+  describe "set program name" do
   
-  specify do
-    # require 'pry'; binding.pry
-    tokens = subject.run
-    p tokens
+    let(:code) { "PROGRAM_NAME = 'test'" }
+    let(:tokens) { [:program_name, '=', :string] }
+    
+    specify do
+      subject.run.map { |t| t.first }.should eq tokens
+    end
+    
   end
+  
+  
+  describe "blank template" do
+  
+    let(:code) { File.read './spec/code/blank.axs' }
+    let(:tokens) { [:program_name, '=', :string] }
+    
+    # specify do
+    #   p subject.run#.map { |t| t.first }.should eq tokens
+    # end
+    
+  end
+  
   
 end
