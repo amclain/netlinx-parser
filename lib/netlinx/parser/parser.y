@@ -44,6 +44,7 @@ rule
   expression
     : comments                  
     | define_section
+    | assignment
     ;
   
   define_section
@@ -59,7 +60,18 @@ rule
     | DEFINE_TYPE               { DefineType.new              }
     | DEFINE_VARIABLE           { DefineVariable.new          }
     ;
-  
+    
+  assignment
+    : IDENTIFIER '=' value      { Assignment.new val[0], val[2] }
+    ;
+    
+  value
+    : DPS     { DPS.new    *val[0] }
+    | NUMBER  { Number.new  val[0] }
+    | DECIMAL { Decimal.new val[0] }
+    | STRING  { String.new  val[0] }
+    ;
+    
   /*
   define_section
     : DEFINE_CALL

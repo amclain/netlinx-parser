@@ -10,15 +10,17 @@ module NetLinx
     
     class Program < Node; end
     
-    class LiteralNode < Struct.new(:value); end
+    class DPS < Struct.new :device, :port, :system; end
     
-    class NumberNode < LiteralNode; end
+    class Literal < Struct.new :value; end
     
-    class StringNode < LiteralNode; end
+    class Number < Literal; end
     
-    class Comment< LiteralNode; end
+    class String < Literal; end
     
-    class ProgramName < LiteralNode; end
+    class Comment< Literal; end
+    
+    class ProgramName < Literal; end
     
     # DEFINE sections
     
@@ -32,6 +34,9 @@ module NetLinx
     class DefineToggling         ; end
     class DefineType             ; end
     class DefineVariable         ; end
+    
+    
+    class Assignment < Struct.new :identifier, :value; end
     
   end
 end

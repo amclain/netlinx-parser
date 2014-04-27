@@ -40,7 +40,30 @@ describe NetLinx::Parser do
     
     specify do
       subject.count.times { |i| subject.first[i].should be_a expected[i] }
-      p subject
+    end
+    
+  end
+  
+  
+  describe "define_device" do
+  
+    let(:code) {
+<<-CODE
+PROGRAM_NAME = 'test'
+DEFINE_DEVICE
+
+dvTP = 10000:1:0
+CODE
+    }
+    
+    let(:expected) { [
+      NetLinx::Parser::ProgramName,
+      NetLinx::Parser::DefineDevice,
+      NetLinx::Parser::Assignment
+    ] }
+    
+    specify do
+      subject.count.times { |i| subject.first[i].should be_a expected[i] }
     end
     
   end
