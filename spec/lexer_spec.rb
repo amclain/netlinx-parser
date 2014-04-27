@@ -1,19 +1,22 @@
 require 'netlinx/parser/lexer'
 
 
+shared_examples "validate_tokens" do
+  specify { subject.run.map { |t| t.first }.should eq tokens }
+end
+
+
 describe NetLinx::Lexer do
   
   subject { NetLinx::Lexer.new code }
   
   
   describe "set program name" do
-  
+    
     let(:code) { "PROGRAM_NAME = 'test'" }
     let(:tokens) { [:program_name, '=', :string] }
     
-    specify do
-      subject.run.map { |t| t.first }.should eq tokens
-    end
+    include_examples "validate_tokens"
     
   end
   
@@ -32,6 +35,21 @@ describe NetLinx::Lexer do
     end
     
   end
+  
+  
+  # describe "define global variable" do
+  
+  #   describe "basic" do
+      
+  #     let(:code) { "DEFINE_VARIABLE\ninteger my_var;\n" }
+  #     let(:tokens) { [
+  #     ] }
+      
+  #     include_examples "validate_tokens"
+      
+  #   end
+    
+  # end
   
   
 end
