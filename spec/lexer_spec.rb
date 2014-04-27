@@ -111,4 +111,18 @@ describe NetLinx::Lexer do
   end
   
   
+  describe "function definition" do
+    
+    describe "basic" do
+      
+      let(:code) { "define_function test_function()\n{\n}\n" }
+      let(:tokens) { [:define_function, :identifier, '(', ')', '{', '}'] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
+  end
+  
+  
 end
