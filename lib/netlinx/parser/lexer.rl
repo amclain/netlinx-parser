@@ -70,12 +70,14 @@ end
              '&&' | '||' | '^^' | '!' |
              '++' | '--';
              
+  data_type = /char/i | /widechar/i | /integer/i | /sinteger/i | /long/i | /slong/i | /float/i |
+              /double/i | /dev/i | /devchan/i;
+              
+  conditional = /if/i | /else if/i | /else/i;
+  
   define_keyword = /DEFINE_DEVICE/i | /DEFINE_CONSTANT/i | /DEFINE_TYPE/i | /DEFINE_VARIABLE/i |
                    /DEFINE_LATCHING/i | /DEFINE_MUTUALLY_EXCLUSIVE/i | /DEFINE_START/i |
                    /DEFINE_EVENT/i | /DEFINE_PROGRAM/i | /DEFINE_FUNCTION/i;
-  
-  data_type = /char/i | /widechar/i | /integer/i | /sinteger/i | /long/i | /slong/i | /float/i |
-              /double/i | /dev/i | /devchan/i;
               
   event_handler = /BUTTON_EVENT/i | /CHANNEL_EVENT/i | /DATA_EVENT/i | /LEVEL_EVENT/i | /REBUILD_EVENT/i;
 
@@ -98,7 +100,8 @@ end
       /PROGRAM_NAME/i
     | define_keyword
     | event_handler
-    | data_type => { add_token :"#{@data[ts...te].downcase}", @data[ts...te] };
+    | conditional
+    | data_type => { add_token :"#{@data[ts...te].gsub(/\s+/, '_').downcase}", @data[ts...te] };
     
     operator | '(' | ')' | '[' | ']' | '{' | '}' | ',' => { add_token @data[ts...te], @data[ts...te] };
     

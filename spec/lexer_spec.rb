@@ -210,4 +210,49 @@ describe NetLinx::Lexer do
     
   end
   
+  
+  describe "conditionals:" do
+    
+    describe "if statement" do
+      
+      let(:code) { "if (i > 0) i == 0\n" }
+      let(:tokens) { [:if, '(', :identifier, '>', :number, ')', :identifier, '==', :number] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
+    describe "if/else statement" do
+      
+      let(:code) {
+<<-CODE
+if (i > 0)
+{
+  i == 0;
+}
+else if (i < 0)
+{
+  i--;
+}
+else
+{
+  i++;
+}
+CODE
+}
+      let(:tokens) { [
+        :if, '(', :identifier, '>', :number, ')', '{',
+          :identifier, '==', :number, '}',
+        :else_if, '(', :identifier, '<', :number, ')', '{',
+          :identifier, '--', '}',
+        :else, '{',
+          :identifier, '++', '}'
+      ] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
+  end
+  
 end
