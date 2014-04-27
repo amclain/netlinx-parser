@@ -7,6 +7,7 @@
 require 'racc/parser.rb'
 
 require 'netlinx/parser/lexer'
+require 'netlinx/parser/nodes'
 
 module NetLinx
   class Parser < Racc::Parser
@@ -33,30 +34,30 @@ module_eval(<<'...end parser.y/module_eval...', 'parser.y', 54)
 ##### State transition tables begin ###
 
 racc_action_table = [
-     5,     6,     8,     9,    10 ]
+     5,     6,     5,     8,     9,    10 ]
 
 racc_action_check = [
-     0,     1,     5,     6,     8 ]
+     0,     1,     2,     5,     6,     8 ]
 
 racc_action_pointer = [
-   -40,     1,   nil,   nil,   nil,   -63,     3,   nil,    -2,   nil,
+   -40,     1,   -38,   nil,   nil,   -62,     4,   nil,    -1,   nil,
    nil ]
 
 racc_action_default = [
-    -2,    -9,    -1,    -4,    -5,    -9,    -9,    -3,    -9,    11,
-    -8 ]
+    -2,    -8,    -1,    -4,    -6,    -8,    -8,    -3,    -8,    11,
+    -7 ]
 
 racc_goto_table = [
-     3,     1,     7,     2,     4 ]
+     3,     2,     7,     1 ]
 
 racc_goto_check = [
-     3,     1,     3,     2,     4 ]
+     3,     2,     3,     1 ]
 
 racc_goto_pointer = [
-   nil,     1,     3,     0,     4 ]
+   nil,     3,     1,     0,   nil ]
 
 racc_goto_default = [
-   nil,   nil,   nil,   nil,   nil ]
+   nil,   nil,   nil,   nil,     4 ]
 
 racc_reduce_table = [
   0, 0, :racc_error,
@@ -64,12 +65,11 @@ racc_reduce_table = [
   0, 68, :_reduce_2,
   2, 69, :_reduce_3,
   1, 69, :_reduce_4,
-  1, 69, :_reduce_5,
-  0, 69, :_reduce_6,
-  0, 70, :_reduce_none,
-  3, 71, :_reduce_8 ]
+  0, 69, :_reduce_5,
+  1, 70, :_reduce_none,
+  3, 71, :_reduce_7 ]
 
-racc_reduce_n = 9
+racc_reduce_n = 8
 
 racc_shift_n = 11
 
@@ -244,13 +244,13 @@ Racc_debug_parser = false
 
 module_eval(<<'.,.,', 'parser.y', 28)
   def _reduce_1(val, _values)
-     [val[0]] 
+     Program.new val[0] 
   end
 .,.,
 
 module_eval(<<'.,.,', 'parser.y', 29)
   def _reduce_2(val, _values)
-     [] 
+     Program.new 
   end
 .,.,
 
@@ -268,21 +268,15 @@ module_eval(<<'.,.,', 'parser.y', 34)
 
 module_eval(<<'.,.,', 'parser.y', 35)
   def _reduce_5(val, _values)
-     val 
-  end
-.,.,
-
-module_eval(<<'.,.,', 'parser.y', 36)
-  def _reduce_6(val, _values)
      [] 
   end
 .,.,
 
-# reduce 7 omitted
+# reduce 6 omitted
 
-module_eval(<<'.,.,', 'parser.y', 44)
-  def _reduce_8(val, _values)
-     val 
+module_eval(<<'.,.,', 'parser.y', 43)
+  def _reduce_7(val, _values)
+     ProgramName.new val[2] 
   end
 .,.,
 

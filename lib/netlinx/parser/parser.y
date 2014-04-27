@@ -26,29 +26,29 @@ options no_result_var
 rule
   
   program
-    : expressions { [val[0]] }
-    | /* none */  { [] }
+    : expressions { Program.new val[0] }
+    | /* none */  { Program.new }
     ;
     
   expressions
     : expressions expression { val.compact }
     | expression             { val }
-    | define_program         { val }
     | /* none */             { [] }
     ;
   
   expression
-    : 
+    : define_program
     ;
     
   define_program
-    : DEFINE_PROGRAM '=' STRING { val }
+    : DEFINE_PROGRAM '=' STRING { ProgramName.new val[2] }
     ;
 
 end
 
 ---- header
 require 'netlinx/parser/lexer'
+require 'netlinx/parser/nodes'
 
 ---- inner
 
