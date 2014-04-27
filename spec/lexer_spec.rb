@@ -190,7 +190,7 @@ describe NetLinx::Lexer do
       
     end
     
-    describe "with 0 chan" do
+    describe "with chan 0" do
       
       let(:code) { "button_event[dvTP, 0]\n" }
       let(:tokens) { [:button_event, '[', :identifier, ',', :number, ']'] }
