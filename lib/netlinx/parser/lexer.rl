@@ -76,11 +76,14 @@ end
   conditional = /if/i | /else if/i | /else/i |
                 /select/i | /active/i | /switch/i | /case/i |
                 /for/i | /while/i | /medium_while/i | /long_while/i |
-                /break/i | /default/i;
+                /break/i | /default/i | /return/i;
   
-  define_keyword = /DEFINE_DEVICE/i | /DEFINE_CONSTANT/i | /DEFINE_TYPE/i | /DEFINE_VARIABLE/i |
-                   /DEFINE_LATCHING/i | /DEFINE_MUTUALLY_EXCLUSIVE/i | /DEFINE_START/i |
-                   /DEFINE_EVENT/i | /DEFINE_PROGRAM/i | /DEFINE_FUNCTION/i;
+  define_keyword = /DEFINE_CALL/i | /DEFINE_COMBINE/i | /DEFINE_CONNECT_LEVEL/i | /DEFINE_CONSTANT/i |
+                   /DEFINE_DEVICE/i | /DEFINE_EVENT/i | /DEFINE_FUNCTION/i | /DEFINE_LATCHING/i |
+                   /DEFINE_MODULE/i | /DEFINE_MUTUALLY_EXCLUSIVE/i | /DEFINE_PROGRAM/i |
+                   /DEFINE_START/i | /DEFINE_TOGGLING/i | /DEFINE_TYPE/i | /DEFINE_VARIABLE/i |
+                   /PROGRAM_NAME/i;
+
               
   event_handler = /BUTTON_EVENT/i | /CHANNEL_EVENT/i | /DATA_EVENT/i | /LEVEL_EVENT/i | /REBUILD_EVENT/i;
 
@@ -100,8 +103,7 @@ end
   
   main := |*
     
-      /PROGRAM_NAME/i
-    | define_keyword
+      define_keyword
     | event_handler
     | conditional
     | data_type => { add_token :"#{@data[ts...te].gsub(/\s+/, '_').downcase}", @data[ts...te] };
