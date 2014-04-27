@@ -37,19 +37,18 @@ describe NetLinx::Lexer do
   end
   
   
-  # describe "define global variable" do
+  describe "define global variable" do
   
-  #   describe "basic" do
+    describe "basic" do
       
-  #     let(:code) { "DEFINE_VARIABLE\ninteger my_var;\n" }
-  #     let(:tokens) { [
-  #     ] }
+      let(:code) { "DEFINE_VARIABLE\ninteger my_var\n" }
+      let(:tokens) { [:define_variable, :integer, :identifier] }
       
-  #     include_examples "validate_tokens"
+      include_examples "validate_tokens"
       
-  #   end
+    end
     
-  # end
+  end
   
   
 end

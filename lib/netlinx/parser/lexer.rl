@@ -64,9 +64,12 @@ end
              '&&' | '||' | '^^' | '!' |
              '++' | '--';
              
-  define_keywords = /DEFINE_DEVICE/i | /DEFINE_CONSTANT/i | /DEFINE_TYPE/i | /DEFINE_VARIABLE/i |
-                    /DEFINE_LATCHING/i | /DEFINE_MUTUALLY_EXCLUSIVE/i | /DEFINE_START/i |
-                    /DEFINE_EVENT/i | /DEFINE_PROGRAM/i;
+  define_keyword = /DEFINE_DEVICE/i | /DEFINE_CONSTANT/i | /DEFINE_TYPE/i | /DEFINE_VARIABLE/i |
+                   /DEFINE_LATCHING/i | /DEFINE_MUTUALLY_EXCLUSIVE/i | /DEFINE_START/i |
+                   /DEFINE_EVENT/i | /DEFINE_PROGRAM/i;
+  
+  data_type = /char/i | /widechar/i | /integer/i | /sinteger/i | /long/i | /slong/i | /float/i |
+              /double/i | /dev/i | /devchan/i;
 
   # String literals
   single_quote = "'";
@@ -80,14 +83,10 @@ end
   
   main := |*
     
+    /PROGRAM_NAME/i |
+    define_keyword | data_type => { add_token :"#{@data[ts...te].downcase}", @data[ts...te] };
     
-    /PROGRAM_NAME/i => { add_token :program_name, @data[ts...te] };
-    
-    define_keywords => { add_token :"#{@data[ts...te].downcase}", @data[ts...te] };
-    
-    '(' | ')' => { add_token @data[ts...te], @data[ts...te] };
-    
-    operator => { add_token @data[ts...te], @data[ts...te] };
+    operator | '(' | ')' => { add_token @data[ts...te], @data[ts...te] };
     
     identifier => { add_token :identifier, @data[ts...te] };
     
