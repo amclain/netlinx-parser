@@ -910,35 +910,35 @@ when 2 then
 te = p+1
 		end
 when 3 then
-# line 109 "lib/netlinx/parser/lexer.rl"
+# line 108 "lib/netlinx/parser/lexer.rl"
 		begin
 act = 1;		end
 when 4 then
-# line 111 "lib/netlinx/parser/lexer.rl"
+# line 110 "lib/netlinx/parser/lexer.rl"
 		begin
 act = 2;		end
 when 5 then
-# line 115 "lib/netlinx/parser/lexer.rl"
+# line 114 "lib/netlinx/parser/lexer.rl"
 		begin
 act = 4;		end
 when 6 then
-# line 119 "lib/netlinx/parser/lexer.rl"
+# line 118 "lib/netlinx/parser/lexer.rl"
 		begin
 act = 6;		end
 when 7 then
-# line 109 "lib/netlinx/parser/lexer.rl"
+# line 108 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin  add_token :"#{@data[ts...te].gsub(/\s+/, '_').downcase}", @data[ts...te]  end
 		end
 when 8 then
-# line 111 "lib/netlinx/parser/lexer.rl"
+# line 110 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin  add_token @data[ts...te], @data[ts...te]  end
 		end
 when 9 then
-# line 125 "lib/netlinx/parser/lexer.rl"
+# line 124 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -957,7 +957,7 @@ te = p+1
      end
 		end
 when 10 then
-# line 132 "lib/netlinx/parser/lexer.rl"
+# line 131 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -976,7 +976,7 @@ te = p+1
      end
 		end
 when 11 then
-# line 144 "lib/netlinx/parser/lexer.rl"
+# line 143 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -993,7 +993,7 @@ te = p+1
      end
 		end
 when 12 then
-# line 150 "lib/netlinx/parser/lexer.rl"
+# line 149 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -1010,7 +1010,7 @@ te = p+1
      end
 		end
 when 13 then
-# line 156 "lib/netlinx/parser/lexer.rl"
+# line 155 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -1027,60 +1027,60 @@ te = p+1
      end
 		end
 when 14 then
-# line 161 "lib/netlinx/parser/lexer.rl"
+# line 160 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
 		end
 when 15 then
-# line 109 "lib/netlinx/parser/lexer.rl"
+# line 108 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p
 p = p - 1; begin  add_token :"#{@data[ts...te].gsub(/\s+/, '_').downcase}", @data[ts...te]  end
 		end
 when 16 then
-# line 111 "lib/netlinx/parser/lexer.rl"
+# line 110 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p
 p = p - 1; begin  add_token @data[ts...te], @data[ts...te]  end
 		end
 when 17 then
-# line 113 "lib/netlinx/parser/lexer.rl"
+# line 112 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p
 p = p - 1; begin  add_token :dps, @data[ts...te].split(':')  end
 		end
 when 18 then
-# line 115 "lib/netlinx/parser/lexer.rl"
+# line 114 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p
 p = p - 1; begin  add_token :number, @data[ts...te].to_i  end
 		end
 when 19 then
-# line 117 "lib/netlinx/parser/lexer.rl"
+# line 116 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p
 p = p - 1; begin  add_token :decimal, @data[ts...te].to_f  end
 		end
 when 20 then
-# line 119 "lib/netlinx/parser/lexer.rl"
+# line 118 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p
 p = p - 1; begin  add_token :identifier, @data[ts...te]  end
 		end
 when 21 then
-# line 109 "lib/netlinx/parser/lexer.rl"
+# line 108 "lib/netlinx/parser/lexer.rl"
 		begin
  begin p = ((te))-1; end
  begin  add_token :"#{@data[ts...te].gsub(/\s+/, '_').downcase}", @data[ts...te]  end
 		end
 when 22 then
-# line 111 "lib/netlinx/parser/lexer.rl"
+# line 110 "lib/netlinx/parser/lexer.rl"
 		begin
  begin p = ((te))-1; end
  begin  add_token @data[ts...te], @data[ts...te]  end
 		end
 when 23 then
-# line 115 "lib/netlinx/parser/lexer.rl"
+# line 114 "lib/netlinx/parser/lexer.rl"
 		begin
  begin p = ((te))-1; end
  begin  add_token :number, @data[ts...te].to_i  end
@@ -1104,7 +1104,7 @@ when 24 then
 end 
 			end
 when 25 then
-# line 169 "lib/netlinx/parser/lexer.rl"
+# line 168 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -1123,12 +1123,12 @@ te = p+1
      end
 		end
 when 26 then
-# line 177 "lib/netlinx/parser/lexer.rl"
+# line 176 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
 		end
 when 27 then
-# line 184 "lib/netlinx/parser/lexer.rl"
+# line 183 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -1147,12 +1147,12 @@ te = p+1
      end
 		end
 when 28 then
-# line 192 "lib/netlinx/parser/lexer.rl"
+# line 191 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
 		end
 when 29 then
-# line 200 "lib/netlinx/parser/lexer.rl"
+# line 199 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -1169,17 +1169,17 @@ te = p+1
      end
 		end
 when 30 then
-# line 206 "lib/netlinx/parser/lexer.rl"
+# line 205 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
 		end
 when 31 then
-# line 206 "lib/netlinx/parser/lexer.rl"
+# line 205 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p
 p = p - 1;		end
 when 32 then
-# line 213 "lib/netlinx/parser/lexer.rl"
+# line 212 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -1196,17 +1196,17 @@ te = p+1
      end
 		end
 when 33 then
-# line 219 "lib/netlinx/parser/lexer.rl"
+# line 218 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
 		end
 when 34 then
-# line 219 "lib/netlinx/parser/lexer.rl"
+# line 218 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p
 p = p - 1;		end
 when 35 then
-# line 225 "lib/netlinx/parser/lexer.rl"
+# line 224 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -1223,12 +1223,12 @@ te = p+1
      end
 		end
 when 36 then
-# line 231 "lib/netlinx/parser/lexer.rl"
+# line 230 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
 		end
 when 37 then
-# line 231 "lib/netlinx/parser/lexer.rl"
+# line 230 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p
 p = p - 1;		end
@@ -1300,6 +1300,6 @@ end
 
 
 
-# line 235 "lib/netlinx/parser/lexer.rl"
+# line 234 "lib/netlinx/parser/lexer.rl"
 
 #%
