@@ -17,8 +17,11 @@ self._lexer_actions = [
 	5, 1, 6, 1, 7, 1, 8, 1, 
 	9, 1, 10, 1, 11, 1, 12, 1, 
 	13, 1, 14, 1, 15, 1, 16, 1, 
-	17, 1, 18, 2, 2, 3, 2, 2, 
-	4
+	17, 1, 18, 1, 19, 1, 20, 1, 
+	21, 1, 22, 1, 23, 1, 24, 1, 
+	25, 1, 26, 1, 27, 1, 28, 1, 
+	29, 1, 30, 1, 31, 1, 32, 2, 
+	2, 3, 2, 2, 4
 ]
 
 class << self
@@ -27,10 +30,11 @@ class << self
 end
 self._lexer_key_offsets = [
 	0, 2, 4, 6, 8, 10, 11, 13, 
-	15, 17, 19, 39, 40, 41, 42, 43, 
-	45, 47, 49, 50, 57, 66, 75, 84, 
-	93, 102, 111, 118, 127, 136, 145, 154, 
-	155, 156
+	15, 17, 19, 41, 42, 43, 44, 45, 
+	46, 48, 50, 52, 54, 55, 62, 71, 
+	80, 89, 98, 107, 116, 123, 132, 141, 
+	150, 159, 160, 161, 162, 163, 164, 165, 
+	166, 168
 ]
 
 class << self
@@ -40,24 +44,26 @@ end
 self._lexer_trans_keys = [
 	79, 111, 71, 103, 82, 114, 65, 97, 
 	77, 109, 95, 78, 110, 65, 97, 77, 
-	109, 69, 101, 33, 34, 37, 38, 39, 
-	42, 43, 45, 47, 60, 61, 62, 80, 
-	94, 95, 112, 124, 126, 97, 122, 61, 
-	38, 43, 45, 60, 62, 61, 62, 82, 
-	114, 94, 95, 48, 57, 65, 90, 97, 
+	109, 69, 101, 33, 34, 38, 39, 40, 
+	41, 43, 45, 47, 60, 61, 62, 80, 
+	94, 95, 112, 124, 126, 37, 42, 97, 
+	122, 61, 38, 42, 43, 45, 42, 47, 
+	60, 62, 61, 62, 82, 114, 94, 95, 
+	48, 57, 65, 90, 97, 122, 82, 95, 
+	114, 48, 57, 65, 90, 97, 122, 79, 
+	95, 111, 48, 57, 65, 90, 97, 122, 
+	71, 95, 103, 48, 57, 65, 90, 97, 
 	122, 82, 95, 114, 48, 57, 65, 90, 
-	97, 122, 79, 95, 111, 48, 57, 65, 
-	90, 97, 122, 71, 95, 103, 48, 57, 
-	65, 90, 97, 122, 82, 95, 114, 48, 
-	57, 65, 90, 97, 122, 65, 95, 97, 
-	48, 57, 66, 90, 98, 122, 77, 95, 
-	109, 48, 57, 65, 90, 97, 122, 95, 
-	48, 57, 65, 90, 97, 122, 78, 95, 
-	110, 48, 57, 65, 90, 97, 122, 65, 
-	95, 97, 48, 57, 66, 90, 98, 122, 
-	77, 95, 109, 48, 57, 65, 90, 97, 
-	122, 69, 95, 101, 48, 57, 65, 90, 
-	97, 122, 124, 39, 34, 0
+	97, 122, 65, 95, 97, 48, 57, 66, 
+	90, 98, 122, 77, 95, 109, 48, 57, 
+	65, 90, 97, 122, 95, 48, 57, 65, 
+	90, 97, 122, 78, 95, 110, 48, 57, 
+	65, 90, 97, 122, 65, 95, 97, 48, 
+	57, 66, 90, 98, 122, 77, 95, 109, 
+	48, 57, 65, 90, 97, 122, 69, 95, 
+	101, 48, 57, 65, 90, 97, 122, 124, 
+	39, 34, 42, 41, 42, 47, 10, 13, 
+	10, 0
 ]
 
 class << self
@@ -66,10 +72,11 @@ class << self
 end
 self._lexer_single_lengths = [
 	2, 2, 2, 2, 2, 1, 2, 2, 
-	2, 2, 18, 1, 1, 1, 1, 0, 
-	0, 2, 1, 1, 3, 3, 3, 3, 
-	3, 3, 1, 3, 3, 3, 3, 1, 
-	1, 1
+	2, 2, 18, 1, 1, 1, 1, 1, 
+	2, 0, 0, 2, 1, 1, 3, 3, 
+	3, 3, 3, 3, 1, 3, 3, 3, 
+	3, 1, 1, 1, 1, 1, 1, 1, 
+	2, 1
 ]
 
 class << self
@@ -78,9 +85,10 @@ class << self
 end
 self._lexer_range_lengths = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 1, 0, 0, 0, 0, 1, 
-	1, 0, 0, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 0, 
+	0, 0, 2, 0, 0, 0, 0, 0, 
+	0, 1, 1, 0, 0, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0
 ]
 
@@ -90,10 +98,11 @@ class << self
 end
 self._lexer_index_offsets = [
 	0, 3, 6, 9, 12, 15, 17, 20, 
-	23, 26, 29, 49, 51, 53, 55, 57, 
-	59, 61, 64, 66, 71, 78, 85, 92, 
-	99, 106, 113, 118, 125, 132, 139, 146, 
-	148, 150
+	23, 26, 29, 50, 52, 54, 56, 58, 
+	60, 63, 65, 67, 70, 72, 77, 84, 
+	91, 98, 105, 112, 119, 124, 131, 138, 
+	145, 152, 154, 156, 158, 160, 162, 164, 
+	166, 169
 ]
 
 class << self
@@ -104,23 +113,25 @@ self._lexer_indicies = [
 	1, 1, 0, 2, 2, 0, 3, 3, 
 	0, 4, 4, 0, 5, 5, 0, 6, 
 	0, 7, 7, 0, 8, 8, 0, 9, 
-	9, 0, 10, 10, 0, 12, 13, 14, 
-	15, 16, 14, 17, 18, 14, 19, 12, 
-	20, 21, 22, 23, 24, 25, 14, 23, 
-	11, 14, 26, 14, 26, 14, 26, 14, 
-	26, 14, 26, 14, 26, 28, 28, 27, 
-	14, 26, 23, 23, 23, 23, 29, 31, 
-	23, 31, 23, 23, 23, 30, 32, 23, 
-	32, 23, 23, 23, 30, 33, 23, 33, 
-	23, 23, 23, 30, 34, 23, 34, 23, 
-	23, 23, 30, 35, 23, 35, 23, 23, 
-	23, 30, 36, 23, 36, 23, 23, 23, 
-	30, 37, 23, 23, 23, 30, 38, 23, 
-	38, 23, 23, 23, 30, 39, 23, 39, 
-	23, 23, 23, 30, 40, 23, 40, 23, 
-	23, 23, 30, 41, 23, 41, 23, 23, 
-	23, 30, 14, 26, 43, 42, 45, 44, 
-	0
+	9, 0, 10, 10, 0, 12, 13, 15, 
+	16, 17, 18, 19, 20, 21, 22, 12, 
+	23, 24, 25, 26, 27, 28, 14, 14, 
+	26, 11, 14, 29, 14, 29, 31, 30, 
+	14, 29, 14, 29, 32, 33, 29, 14, 
+	29, 14, 29, 35, 35, 34, 14, 29, 
+	26, 26, 26, 26, 36, 38, 26, 38, 
+	26, 26, 26, 37, 39, 26, 39, 26, 
+	26, 26, 37, 40, 26, 40, 26, 26, 
+	26, 37, 41, 26, 41, 26, 26, 26, 
+	37, 42, 26, 42, 26, 26, 26, 37, 
+	43, 26, 43, 26, 26, 26, 37, 44, 
+	26, 26, 26, 37, 45, 26, 45, 26, 
+	26, 26, 37, 46, 26, 46, 26, 26, 
+	26, 37, 47, 26, 47, 26, 26, 26, 
+	37, 48, 26, 48, 26, 26, 26, 37, 
+	14, 29, 50, 49, 52, 51, 54, 53, 
+	56, 55, 58, 57, 60, 59, 62, 63, 
+	61, 62, 64, 0
 ]
 
 class << self
@@ -130,10 +141,13 @@ end
 self._lexer_trans_targs = [
 	10, 1, 2, 3, 4, 5, 6, 7, 
 	8, 9, 10, 10, 11, 10, 10, 12, 
-	10, 13, 14, 15, 16, 17, 18, 19, 
-	20, 31, 10, 10, 0, 10, 10, 21, 
-	22, 23, 24, 25, 26, 27, 28, 29, 
-	30, 19, 32, 32, 33, 33
+	10, 13, 10, 14, 15, 16, 17, 18, 
+	19, 20, 21, 22, 33, 10, 10, 10, 
+	10, 10, 10, 0, 10, 10, 23, 24, 
+	25, 26, 27, 28, 29, 30, 31, 32, 
+	21, 34, 34, 35, 35, 36, 37, 36, 
+	36, 38, 39, 38, 38, 40, 40, 41, 
+	40
 ]
 
 class << self
@@ -141,12 +155,15 @@ class << self
 	private :_lexer_trans_actions, :_lexer_trans_actions=
 end
 self._lexer_trans_actions = [
-	23, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 7, 15, 0, 13, 9, 0, 
-	11, 0, 0, 0, 0, 5, 0, 38, 
-	0, 0, 17, 21, 0, 25, 19, 0, 
+	33, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 7, 23, 0, 15, 11, 0, 
+	13, 0, 9, 0, 0, 0, 0, 0, 
+	5, 0, 66, 0, 0, 27, 25, 17, 
+	19, 21, 31, 0, 35, 29, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 35, 29, 27, 33, 31
+	63, 39, 37, 43, 41, 47, 0, 49, 
+	45, 53, 0, 55, 51, 59, 57, 0, 
+	61
 ]
 
 class << self
@@ -158,7 +175,8 @@ self._lexer_to_state_actions = [
 	0, 0, 1, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	1, 1
+	0, 0, 1, 1, 1, 0, 1, 0, 
+	1, 0
 ]
 
 class << self
@@ -170,7 +188,8 @@ self._lexer_from_state_actions = [
 	0, 0, 3, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	3, 3
+	0, 0, 3, 3, 3, 0, 3, 0, 
+	3, 0
 ]
 
 class << self
@@ -179,10 +198,11 @@ class << self
 end
 self._lexer_eof_trans = [
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 0, 27, 27, 27, 27, 27, 
-	27, 28, 27, 30, 31, 31, 31, 31, 
-	31, 31, 31, 31, 31, 31, 31, 27, 
-	0, 0
+	1, 1, 0, 30, 30, 31, 30, 30, 
+	30, 30, 30, 35, 30, 37, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 30, 0, 0, 0, 56, 0, 60, 
+	0, 65
 ]
 
 class << self
@@ -205,11 +225,23 @@ self.lexer_en_main = 10;
 class << self
 	attr_accessor :lexer_en_string_single_quote
 end
-self.lexer_en_string_single_quote = 32;
+self.lexer_en_string_single_quote = 34;
 class << self
 	attr_accessor :lexer_en_string_double_quote
 end
-self.lexer_en_string_double_quote = 33;
+self.lexer_en_string_double_quote = 35;
+class << self
+	attr_accessor :lexer_en_paren_comment_body
+end
+self.lexer_en_paren_comment_body = 36;
+class << self
+	attr_accessor :lexer_en_slash_comment_body
+end
+self.lexer_en_slash_comment_body = 38;
+class << self
+	attr_accessor :lexer_en_std_comment_body
+end
+self.lexer_en_std_comment_body = 40;
 
 
 # line 9 "lib/netlinx/parser/lexer.rl"
@@ -238,7 +270,7 @@ self.lexer_en_string_double_quote = 33;
       @tokens = []
       
       
-# line 242 "lib/netlinx/parser/lexer.rb"
+# line 274 "lib/netlinx/parser/lexer.rb"
 begin
 	p ||= 0
 	pe ||= data.length
@@ -251,7 +283,7 @@ end
 
 # line 34 "lib/netlinx/parser/lexer.rl"
       
-# line 255 "lib/netlinx/parser/lexer.rb"
+# line 287 "lib/netlinx/parser/lexer.rb"
 begin
 	_klen, _trans, _keys, _acts, _nacts = nil
 	_goto_level = 0
@@ -281,7 +313,7 @@ begin
 		begin
 ts = p
 		end
-# line 285 "lib/netlinx/parser/lexer.rb"
+# line 317 "lib/netlinx/parser/lexer.rb"
 		end # from state action switch
 	end
 	if _trigger_goto
@@ -354,46 +386,33 @@ when 2 then
 te = p+1
 		end
 when 3 then
-# line 74 "lib/netlinx/parser/lexer.rl"
+# line 81 "lib/netlinx/parser/lexer.rl"
 		begin
 act = 1;		end
 when 4 then
-# line 78 "lib/netlinx/parser/lexer.rl"
+# line 87 "lib/netlinx/parser/lexer.rl"
 		begin
-act = 3;		end
+act = 4;		end
 when 5 then
-# line 74 "lib/netlinx/parser/lexer.rl"
+# line 81 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin  add_token :program_name, @data[ts...te]  end
 		end
 when 6 then
-# line 76 "lib/netlinx/parser/lexer.rl"
+# line 83 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin  add_token @data[ts...te], @data[ts...te]  end
 		end
 when 7 then
-# line 80 "lib/netlinx/parser/lexer.rl"
+# line 85 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
- begin 
-      @buf_start = ts + 1
-      
-      #add_token :string_start, @data[ts...te]
-      	begin
-		stack[top] = cs
-		top+= 1
-		cs = 32
-		_trigger_goto = true
-		_goto_level = _again
-		break
-	end
-
-     end
+ begin  add_token @data[ts...te], @data[ts...te]  end
 		end
 when 8 then
-# line 87 "lib/netlinx/parser/lexer.rl"
+# line 90 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -403,7 +422,7 @@ te = p+1
       	begin
 		stack[top] = cs
 		top+= 1
-		cs = 33
+		cs = 34
 		_trigger_goto = true
 		_goto_level = _again
 		break
@@ -412,46 +431,122 @@ te = p+1
      end
 		end
 when 9 then
-# line 94 "lib/netlinx/parser/lexer.rl"
+# line 97 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p+1
+ begin 
+      @buf_start = ts + 1
+      
+      #add_token :string_start, @data[ts...te]
+      	begin
+		stack[top] = cs
+		top+= 1
+		cs = 35
+		_trigger_goto = true
+		_goto_level = _again
+		break
+	end
+
+     end
+		end
+when 10 then
+# line 109 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p+1
+ begin 
+      @buf_start = ts + 1
+      	begin
+		stack[top] = cs
+		top+= 1
+		cs = 36
+		_trigger_goto = true
+		_goto_level = _again
+		break
+	end
+
+     end
+		end
+when 11 then
+# line 115 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p+1
+ begin 
+      @buf_start = ts + 1
+      	begin
+		stack[top] = cs
+		top+= 1
+		cs = 38
+		_trigger_goto = true
+		_goto_level = _again
+		break
+	end
+
+     end
+		end
+when 12 then
+# line 121 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p+1
+ begin 
+      @buf_start = ts + 1
+      	begin
+		stack[top] = cs
+		top+= 1
+		cs = 40
+		_trigger_goto = true
+		_goto_level = _again
+		break
+	end
+
+     end
+		end
+when 13 then
+# line 127 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
 		end
-when 10 then
-# line 76 "lib/netlinx/parser/lexer.rl"
+when 14 then
+# line 83 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p
 p = p - 1; begin  add_token @data[ts...te], @data[ts...te]  end
 		end
-when 11 then
-# line 78 "lib/netlinx/parser/lexer.rl"
+when 15 then
+# line 85 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p
+p = p - 1; begin  add_token @data[ts...te], @data[ts...te]  end
+		end
+when 16 then
+# line 87 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p
 p = p - 1; begin  add_token :identifier, @data[ts...te]  end
 		end
-when 12 then
-# line 94 "lib/netlinx/parser/lexer.rl"
+when 17 then
+# line 127 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p
 p = p - 1;		end
-when 13 then
-# line 94 "lib/netlinx/parser/lexer.rl"
+when 18 then
+# line 127 "lib/netlinx/parser/lexer.rl"
 		begin
  begin p = ((te))-1; end
 		end
-when 14 then
+when 19 then
 # line 1 "NONE"
 		begin
 	case act
 	when 1 then
 	begin begin p = ((te))-1; end
  add_token :program_name, @data[ts...te] end
-	when 3 then
+	when 4 then
 	begin begin p = ((te))-1; end
  add_token :identifier, @data[ts...te] end
 end 
 			end
-when 15 then
-# line 100 "lib/netlinx/parser/lexer.rl"
+when 20 then
+# line 135 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -469,13 +564,13 @@ te = p+1
 
      end
 		end
-when 16 then
-# line 108 "lib/netlinx/parser/lexer.rl"
+when 21 then
+# line 143 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
 		end
-when 17 then
-# line 114 "lib/netlinx/parser/lexer.rl"
+when 22 then
+# line 150 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
  begin 
@@ -493,12 +588,93 @@ te = p+1
 
      end
 		end
-when 18 then
-# line 122 "lib/netlinx/parser/lexer.rl"
+when 23 then
+# line 158 "lib/netlinx/parser/lexer.rl"
 		begin
 te = p+1
 		end
-# line 502 "lib/netlinx/parser/lexer.rb"
+when 24 then
+# line 166 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p+1
+ begin 
+      e = te - 1
+      add_token :comment, @data[@buf_start...e]
+      	begin
+		top -= 1
+		cs = stack[top]
+		_trigger_goto = true
+		_goto_level = _again
+		break
+	end
+
+     end
+		end
+when 25 then
+# line 172 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p+1
+		end
+when 26 then
+# line 172 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p
+p = p - 1;		end
+when 27 then
+# line 179 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p+1
+ begin 
+      e = te - 1
+      add_token :comment, @data[@buf_start...e]
+      	begin
+		top -= 1
+		cs = stack[top]
+		_trigger_goto = true
+		_goto_level = _again
+		break
+	end
+
+     end
+		end
+when 28 then
+# line 185 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p+1
+		end
+when 29 then
+# line 185 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p
+p = p - 1;		end
+when 30 then
+# line 191 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p+1
+ begin 
+      e = te - 1
+      add_token :comment, @data[@buf_start...e]
+      	begin
+		top -= 1
+		cs = stack[top]
+		_trigger_goto = true
+		_goto_level = _again
+		break
+	end
+
+     end
+		end
+when 31 then
+# line 197 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p+1
+		end
+when 32 then
+# line 197 "lib/netlinx/parser/lexer.rl"
+		begin
+te = p
+p = p - 1;		end
+# line 678 "lib/netlinx/parser/lexer.rb"
 			end # action switch
 		end
 	end
@@ -518,7 +694,7 @@ when 0 then
 # line 1 "NONE"
 		begin
 ts = nil;		end
-# line 522 "lib/netlinx/parser/lexer.rb"
+# line 698 "lib/netlinx/parser/lexer.rb"
 		end # to state action switch
 	end
 	if _trigger_goto
@@ -566,6 +742,6 @@ end
 
 
 
-# line 127 "lib/netlinx/parser/lexer.rl"
+# line 202 "lib/netlinx/parser/lexer.rl"
 
 #%

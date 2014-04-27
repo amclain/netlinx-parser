@@ -53,8 +53,10 @@ end
 
 %%{
 #%
-
-  identifier = [_a-z][_a-zA-Z0-9]*;
+  
+  newline = "\n" | "\r\n";
+  
+  identifier = [_a-zA-Z][_a-zA-Z0-9]*;
   
   operator = '+' | '-' | '*' | '/' | '%' |
              '<' | '>' | '=' | '==' | '<=' | '>=' | '<>'| '!=' |
@@ -67,18 +69,24 @@ end
   single_quote = "'";
   double_quote = '"';
   
+  # Comments
+  paren_comment = '(*';
+  slash_comment = '/*';
+  std_comment   = '//';
+  
   
   main := |*
     
     
     /PROGRAM_NAME/i => { add_token :program_name, @data[ts...te] };
     
-    '(' | ')' => { add_token @data[ts...te], @data[ts...te] }
+    '(' | ')' => { add_token @data[ts...te], @data[ts...te] };
     
     operator => { add_token @data[ts...te], @data[ts...te] };
     
     identifier => { add_token :identifier, @data[ts...te] };
     
+    # String literals.
     single_quote => {
       @buf_start = ts + 1
       
@@ -93,10 +101,34 @@ end
       fcall string_double_quote;
     };
     
+    # --------
+    # Comments
+    # --------
+    
+    # (*  *)
+    paren_comment => {
+      @buf_start = ts + 1
+      fcall paren_comment_body;
+    };
+    
+    # /*  */
+    slash_comment => {
+      @buf_start = ts + 1
+      fcall slash_comment_body;
+    };
+    
+    # //
+    std_comment => {
+      @buf_start = ts + 1
+      fcall std_comment_body;
+    };
+    
+    
     any;
     
   *|;
   
+  # String Literals
   
   string_single_quote := |*
     
@@ -126,7 +158,46 @@ end
     any;
     
   *|;
+  
+  # Comments
+  
+  paren_comment_body := |*
+    
+    '*)' => {
+      e = te - 1
+      add_token :comment, @data[@buf_start...e]
+      fret;
+    };
+    
+    any;
+    
+  *|;
 
+  
+  slash_comment_body := |*
+    
+    '*/' => {
+      e = te - 1
+      add_token :comment, @data[@buf_start...e]
+      fret;
+    };
+    
+    any;
+    
+  *|;
+  
+  std_comment_body := |*
+    
+    newline => {
+      e = te - 1
+      add_token :comment, @data[@buf_start...e]
+      fret;
+    };
+    
+    any;
+    
+  *|;
+  
   
 }%%
 #%

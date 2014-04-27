@@ -23,9 +23,9 @@ describe NetLinx::Lexer do
     let(:code) { File.read './spec/code/blank.axs' }
     let(:tokens) { [:program_name, '=', :string] }
     
-    # specify do
-    #   p subject.run#.map { |t| t.first }.should eq tokens
-    # end
+    specify do
+      p subject.run.reject {|t| t.first == :comment }#.map { |t| t.first }.should eq tokens
+    end
     
   end
   
