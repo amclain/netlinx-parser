@@ -1,7 +1,16 @@
 require 'rspec/core/rake_task'
 require 'yard'
 
-task :default => [:test]
+task :default => [:compile, :test]
+
+# Compile grammars.
+task :compile do
+  # Compile Ragel.
+  Dir['**/*.rl'].each { |file| system "ragel -R #{file}" }
+  
+  # Compile RACC.
+  Dir['**/*.y'].each { |file| system "racc #{file} -o #{file.gsub(/\.(.*)/, '')}.rb" }
+end
 
 # Run tests.
 RSpec::Core::RakeTask.new :test do |c|
@@ -12,7 +21,7 @@ RSpec::Core::RakeTask.new :test do |c|
 end
 
 # Build the gem.
-task :build => [:doc] do
+task :build => [:compile, :doc] do
   Dir['*.gem'].each {|file| File.delete file}
   system 'gem build *.gemspec'
 end
