@@ -33,7 +33,7 @@ rule
   expressions
     : expressions expression { val.flatten.compact }
     | expression             { val }
-    | /* none */             { nil }
+    | /* none */             { }
     ;
   
   comments
@@ -42,14 +42,15 @@ rule
     ;
   
   expression
-    : comments                  
+    : comments
+    | PROGRAM_NAME '=' STRING   { ProgramName.new val[2]      }
     | define_section
+    | definition
     | assignment
     ;
   
   define_section
-    : PROGRAM_NAME '=' STRING   { ProgramName.new val[2]      }
-    | DEFINE_CONSTANT           { DefineConstant.new          }
+    : DEFINE_CONSTANT           { DefineConstant.new          }
     | DEFINE_DEVICE             { DefineDevice.new            }
     | DEFINE_EVENT              { DefineEvent.new             }
     | DEFINE_LATCHING           { DefineLatching.new          }
@@ -60,16 +61,38 @@ rule
     | DEFINE_TYPE               { DefineType.new              }
     | DEFINE_VARIABLE           { DefineVariable.new          }
     ;
-    
+  
+  definition
+    : type IDENTIFIER           { Definition.new val[1], val[0], nil }
+    | type IDENTIFIER '=' value { Definition.new val[1], val[3], val[0].downcase.to_sym }
+    ;
+  
   assignment
     : IDENTIFIER '=' value      { Assignment.new val[0], val[2] }
     ;
     
+  comparison
+    : 
+    ;
+    
+  type
+    : CHAR
+    | WIDECHAR
+    | INTEGER
+    | SINTEGER
+    | LONG
+    | SLONG
+    | FLOAT
+    | DOUBLE
+    | DEV
+    | DEVCHAN
+    ;
+    
   value
-    : DPS     { DPS.new    *val[0] }
-    | NUMBER  { Number.new  val[0] }
-    | DECIMAL { Decimal.new val[0] }
-    | STRING  { String.new  val[0] }
+    : DPS     { DPS.new *(val[0].map &:to_i) }
+    | NUMBER  { val[0].to_i }
+    | DECIMAL { val[0].to_f }
+    | STRING  { val[0].to_s }
     ;
     
   /*

@@ -14,10 +14,6 @@ module NetLinx
     
     class Literal < Struct.new :value; end
     
-    class Number < Literal; end
-    
-    class String < Literal; end
-    
     class Comment< Literal; end
     
     class ProgramName < Literal; end
@@ -36,7 +32,9 @@ module NetLinx
     class DefineVariable         ; end
     
     
+    class Definition < Struct.new :identifier, :value, :type; end
     class Assignment < Struct.new :identifier, :value; end
+    
     
   end
 end
