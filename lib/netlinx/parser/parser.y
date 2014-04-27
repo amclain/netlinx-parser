@@ -29,23 +29,22 @@ rule
     : expressions { Program.new val[0] }
     | /* none */  { Program.new }
     ;
-    
+  
   expressions
     : expressions expression { val.flatten.compact }
     | expression             { val }
-    | /* none */             { [] }
+    | /* none */             { nil }
     ;
   
   comments
     : comments COMMENT
-    | COMMENT
+    | COMMENT                   { @ignore_comments ? nil : Comment.new(val[0]) }
     ;
   
   expression
-    : comments
+    : comments                  
     | define_section
     ;
-  
   
   define_section
     : PROGRAM_NAME '=' STRING   { ProgramName.new val[2]      }
@@ -79,8 +78,10 @@ require 'netlinx/parser/nodes'
 
 ---- inner
 
-  def initialize data
+  def initialize data, ignore_comments: true
     @data = data
+    @ignore_comments = ignore_comments
+    
     @lexer = NetLinx::Lexer.new data
     # Convert all token names to uppercase.
     @tokens = @lexer.run.map! { |t| [t[0].upcase, t[1]] }

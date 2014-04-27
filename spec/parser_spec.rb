@@ -22,7 +22,7 @@ describe NetLinx::Parser do
   
   describe "blank template" do
   
-    let(:code) { File.read './spec/code/blank_no_comments.axs' }
+    let(:code) { File.read './spec/code/blank.axs' }
     
     let(:expected) { [
       NetLinx::Parser::ProgramName,
@@ -40,6 +40,7 @@ describe NetLinx::Parser do
     
     specify do
       subject.count.times { |i| subject.first[i].should be_a expected[i] }
+      p subject
     end
     
   end

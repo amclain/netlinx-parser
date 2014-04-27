@@ -14,8 +14,10 @@ module NetLinx
 
 module_eval(<<'...end parser.y/module_eval...', 'parser.y', 81)
 
-  def initialize data
+  def initialize data, ignore_comments: true
     @data = data
+    @ignore_comments = ignore_comments
+    
     @lexer = NetLinx::Lexer.new data
     # Convert all token names to uppercase.
     @tokens = @lexer.run.map! { |t| [t[0].upcase, t[1]] }
@@ -79,7 +81,7 @@ racc_reduce_table = [
   1, 70, :_reduce_4,
   0, 70, :_reduce_5,
   2, 72, :_reduce_none,
-  1, 72, :_reduce_none,
+  1, 72, :_reduce_7,
   1, 71, :_reduce_none,
   1, 71, :_reduce_none,
   3, 73, :_reduce_10,
@@ -296,13 +298,17 @@ module_eval(<<'.,.,', 'parser.y', 34)
 
 module_eval(<<'.,.,', 'parser.y', 35)
   def _reduce_5(val, _values)
-     [] 
+     nil 
   end
 .,.,
 
 # reduce 6 omitted
 
-# reduce 7 omitted
+module_eval(<<'.,.,', 'parser.y', 40)
+  def _reduce_7(val, _values)
+     @ignore_comments ? nil : Comment.new(val[0]) 
+  end
+.,.,
 
 # reduce 8 omitted
 

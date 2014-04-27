@@ -16,6 +16,8 @@ module NetLinx
     
     class StringNode < LiteralNode; end
     
+    class Comment< LiteralNode; end
+    
     class ProgramName < LiteralNode; end
     
     # DEFINE sections
