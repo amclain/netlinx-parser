@@ -56,6 +56,13 @@ end
 
   identifier = [_a-z][_a-zA-Z0-9]*;
   
+  operator = '+' | '-' | '*' | '/' | '%' |
+             '<' | '>' | '=' | '==' | '<=' | '>=' | '<>'| '!=' |
+             '&' | '|' | '^' | '~' | '<<' | '>>' |
+             '&&' | '||' | '^^' | '!' |
+             '++' | '--';
+             
+  
   # String literals
   single_quote = "'";
   double_quote = '"';
@@ -63,7 +70,12 @@ end
   
   main := |*
     
+    
     /PROGRAM_NAME/i => { add_token :program_name, @data[ts...te] };
+    
+    '(' | ')' => { add_token @data[ts...te], @data[ts...te] }
+    
+    operator => { add_token @data[ts...te], @data[ts...te] };
     
     identifier => { add_token :identifier, @data[ts...te] };
     
@@ -85,6 +97,7 @@ end
     
   *|;
   
+  
   string_single_quote := |*
     
     single_quote => {
@@ -98,6 +111,7 @@ end
     any;
     
   *|;
+  
   
   string_double_quote := |*
     
