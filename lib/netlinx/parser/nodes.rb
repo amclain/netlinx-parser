@@ -18,19 +18,7 @@ module NetLinx
     
     class ProgramName < Literal; end
     
-    # DEFINE sections
-    
-    class DefineConstant         ; end
-    class DefineDevice           ; end
-    class DefineEvent            ; end
-    class DefineLatching         ; end
-    class DefineMutuallyExclusive; end
-    class DefineProgram          ; end
-    class DefineStart            ; end
-    class DefineToggling         ; end
-    class DefineType             ; end
-    class DefineVariable         ; end
-    
+    class DefineSection < Struct.new :type; end
     
     class Definition < Struct.new :identifier, :value, :type; end
     class Assignment < Struct.new :identifier, :value; end

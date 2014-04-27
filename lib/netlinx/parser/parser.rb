@@ -92,19 +92,19 @@ racc_reduce_table = [
   1, 72, :_reduce_7,
   1, 71, :_reduce_none,
   3, 71, :_reduce_9,
+  1, 71, :_reduce_10,
   1, 71, :_reduce_none,
   1, 71, :_reduce_none,
-  1, 71, :_reduce_none,
-  1, 73, :_reduce_13,
-  1, 73, :_reduce_14,
-  1, 73, :_reduce_15,
-  1, 73, :_reduce_16,
-  1, 73, :_reduce_17,
-  1, 73, :_reduce_18,
-  1, 73, :_reduce_19,
-  1, 73, :_reduce_20,
-  1, 73, :_reduce_21,
-  1, 73, :_reduce_22,
+  1, 73, :_reduce_none,
+  1, 73, :_reduce_none,
+  1, 73, :_reduce_none,
+  1, 73, :_reduce_none,
+  1, 73, :_reduce_none,
+  1, 73, :_reduce_none,
+  1, 73, :_reduce_none,
+  1, 73, :_reduce_none,
+  1, 73, :_reduce_none,
+  1, 73, :_reduce_none,
   2, 74, :_reduce_23,
   4, 74, :_reduce_24,
   3, 75, :_reduce_25,
@@ -351,71 +351,35 @@ module_eval(<<'.,.,', 'parser.y', 45)
   end
 .,.,
 
-# reduce 10 omitted
+module_eval(<<'.,.,', 'parser.y', 46)
+  def _reduce_10(val, _values)
+     DefineSection.new val[0].downcase.to_sym 
+  end
+.,.,
 
 # reduce 11 omitted
 
 # reduce 12 omitted
 
-module_eval(<<'.,.,', 'parser.y', 52)
-  def _reduce_13(val, _values)
-     DefineConstant.new          
-  end
-.,.,
+# reduce 13 omitted
 
-module_eval(<<'.,.,', 'parser.y', 53)
-  def _reduce_14(val, _values)
-     DefineDevice.new            
-  end
-.,.,
+# reduce 14 omitted
 
-module_eval(<<'.,.,', 'parser.y', 54)
-  def _reduce_15(val, _values)
-     DefineEvent.new             
-  end
-.,.,
+# reduce 15 omitted
 
-module_eval(<<'.,.,', 'parser.y', 55)
-  def _reduce_16(val, _values)
-     DefineLatching.new          
-  end
-.,.,
+# reduce 16 omitted
 
-module_eval(<<'.,.,', 'parser.y', 56)
-  def _reduce_17(val, _values)
-     DefineMutuallyExclusive.new 
-  end
-.,.,
+# reduce 17 omitted
 
-module_eval(<<'.,.,', 'parser.y', 57)
-  def _reduce_18(val, _values)
-     DefineProgram.new           
-  end
-.,.,
+# reduce 18 omitted
 
-module_eval(<<'.,.,', 'parser.y', 58)
-  def _reduce_19(val, _values)
-     DefineStart.new             
-  end
-.,.,
+# reduce 19 omitted
 
-module_eval(<<'.,.,', 'parser.y', 59)
-  def _reduce_20(val, _values)
-     DefineToggling.new          
-  end
-.,.,
+# reduce 20 omitted
 
-module_eval(<<'.,.,', 'parser.y', 60)
-  def _reduce_21(val, _values)
-     DefineType.new              
-  end
-.,.,
+# reduce 21 omitted
 
-module_eval(<<'.,.,', 'parser.y', 61)
-  def _reduce_22(val, _values)
-     DefineVariable.new          
-  end
-.,.,
+# reduce 22 omitted
 
 module_eval(<<'.,.,', 'parser.y', 65)
   def _reduce_23(val, _values)

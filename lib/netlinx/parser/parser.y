@@ -44,22 +44,22 @@ rule
   expression
     : comments
     | PROGRAM_NAME '=' STRING   { ProgramName.new val[2]      }
-    | define_section
+    | define_section            { DefineSection.new val[0].downcase.to_sym }
     | definition
     | assignment
     ;
   
   define_section
-    : DEFINE_CONSTANT           { DefineConstant.new          }
-    | DEFINE_DEVICE             { DefineDevice.new            }
-    | DEFINE_EVENT              { DefineEvent.new             }
-    | DEFINE_LATCHING           { DefineLatching.new          }
-    | DEFINE_MUTUALLY_EXCLUSIVE { DefineMutuallyExclusive.new }
-    | DEFINE_PROGRAM            { DefineProgram.new           }
-    | DEFINE_START              { DefineStart.new             }
-    | DEFINE_TOGGLING           { DefineToggling.new          }
-    | DEFINE_TYPE               { DefineType.new              }
-    | DEFINE_VARIABLE           { DefineVariable.new          }
+    : DEFINE_CONSTANT
+    | DEFINE_DEVICE
+    | DEFINE_EVENT
+    | DEFINE_LATCHING
+    | DEFINE_MUTUALLY_EXCLUSIVE
+    | DEFINE_PROGRAM
+    | DEFINE_START
+    | DEFINE_TOGGLING
+    | DEFINE_TYPE
+    | DEFINE_VARIABLE
     ;
   
   definition

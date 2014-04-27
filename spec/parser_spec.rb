@@ -26,16 +26,16 @@ describe NetLinx::Parser do
     
     let(:expected) { [
       NetLinx::Parser::ProgramName,
-      NetLinx::Parser::DefineConstant,
-      NetLinx::Parser::DefineDevice,
-      NetLinx::Parser::DefineEvent,
-      NetLinx::Parser::DefineLatching,
-      NetLinx::Parser::DefineMutuallyExclusive,
-      NetLinx::Parser::DefineProgram,
-      NetLinx::Parser::DefineStart,
-      NetLinx::Parser::DefineToggling,
-      NetLinx::Parser::DefineType,
-      NetLinx::Parser::DefineVariable,
+      NetLinx::Parser::DefineSection,
+      NetLinx::Parser::DefineSection,
+      NetLinx::Parser::DefineSection,
+      NetLinx::Parser::DefineSection,
+      NetLinx::Parser::DefineSection,
+      NetLinx::Parser::DefineSection,
+      NetLinx::Parser::DefineSection,
+      NetLinx::Parser::DefineSection,
+      NetLinx::Parser::DefineSection,
+      NetLinx::Parser::DefineSection,
     ] }
     
     specify do
@@ -57,7 +57,7 @@ CODE
     
     let(:expected) { [
       NetLinx::Parser::ProgramName,
-      NetLinx::Parser::DefineDevice,
+      NetLinx::Parser::DefineSection,
       NetLinx::Parser::Assignment
     ] }
     
@@ -85,7 +85,7 @@ CODE
     
     let(:expected) { [
       NetLinx::Parser::ProgramName,
-      NetLinx::Parser::DefineVariable,
+      NetLinx::Parser::DefineSection,
       NetLinx::Parser::Definition
     ] }
     
