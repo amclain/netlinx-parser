@@ -73,7 +73,10 @@ end
   data_type = /char/i | /widechar/i | /integer/i | /sinteger/i | /long/i | /slong/i | /float/i |
               /double/i | /dev/i | /devchan/i;
               
-  conditional = /if/i | /else if/i | /else/i;
+  conditional = /if/i | /else if/i | /else/i |
+                /select/i | /active/i | /switch/i | /case/i |
+                /for/i | /while/i | /medium_while/i | /long_while/i |
+                /break/i | /default/i;
   
   define_keyword = /DEFINE_DEVICE/i | /DEFINE_CONSTANT/i | /DEFINE_TYPE/i | /DEFINE_VARIABLE/i |
                    /DEFINE_LATCHING/i | /DEFINE_MUTUALLY_EXCLUSIVE/i | /DEFINE_START/i |
