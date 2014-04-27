@@ -37,6 +37,38 @@ describe NetLinx::Lexer do
   end
   
   
+  describe "comment" do
+    
+    describe "with parenthesis" do
+      
+      let(:code) { "(* Parenthesis Comment *)\n" }
+      let(:tokens) { [:comment] }
+      
+      include_examples "validate_tokens"
+    
+    end
+    
+    describe "with slash star" do
+      
+      let(:code) { "/* Slash Star Comment */\n" }
+      let(:tokens) { [:comment] }
+      
+      include_examples "validate_tokens"
+    
+    end
+    
+    describe "with double slash" do
+      
+      let(:code) { "// Double Slash Comment\n" }
+      let(:tokens) { [:comment] }
+      
+      include_examples "validate_tokens"
+    
+    end
+    
+  end
+  
+  
   describe "define device" do
     
     let(:code) { "DEFINE_DEVICE\ndvTP = 10001:1:0\n" }
