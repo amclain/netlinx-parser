@@ -64,7 +64,10 @@ end
              '&&' | '||' | '^^' | '!' |
              '++' | '--';
              
-  
+  define_keywords = /DEFINE_DEVICE/i | /DEFINE_CONSTANT/i | /DEFINE_TYPE/i | /DEFINE_VARIABLE/i |
+                    /DEFINE_LATCHING/i | /DEFINE_MUTUALLY_EXCLUSIVE/i | /DEFINE_START/i |
+                    /DEFINE_EVENT/i | /DEFINE_PROGRAM/i;
+
   # String literals
   single_quote = "'";
   double_quote = '"';
@@ -80,13 +83,18 @@ end
     
     /PROGRAM_NAME/i => { add_token :program_name, @data[ts...te] };
     
+    define_keywords => { add_token :"#{@data[ts...te].downcase}", @data[ts...te] };
+    
     '(' | ')' => { add_token @data[ts...te], @data[ts...te] };
     
     operator => { add_token @data[ts...te], @data[ts...te] };
     
     identifier => { add_token :identifier, @data[ts...te] };
     
+    # ----------------
     # String literals.
+    # ----------------
+    
     single_quote => {
       @buf_start = ts + 1
       
