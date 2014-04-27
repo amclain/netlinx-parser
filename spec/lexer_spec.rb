@@ -170,4 +170,44 @@ describe NetLinx::Lexer do
   end
   
   
+  describe "event handler" do
+    
+    describe "basic" do
+      
+      let(:code) { "button_event[dvTP, BTN_CHAN_NUM]\n" }
+      let(:tokens) { [:button_event, '[', :identifier, ',', :identifier, ']'] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
+    describe "with dps" do
+      
+      let(:code) { "button_event[dvTP, 10000:1:0]\n" }
+      let(:tokens) { [:button_event, '[', :identifier, ',', :dps, ']'] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
+    describe "with 0 chan" do
+      
+      let(:code) { "button_event[dvTP, 0]\n" }
+      let(:tokens) { [:button_event, '[', :identifier, ',', :number, ']'] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
+    describe "with devchan" do
+      
+      let(:code) { "button_event[my_devchan]\n" }
+      let(:tokens) { [:button_event, '[', :identifier, ']'] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
+  end
+  
 end
