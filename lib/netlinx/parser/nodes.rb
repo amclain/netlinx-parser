@@ -1,6 +1,17 @@
 module NetLinx
   class Parser < Racc::Parser
     
+    def self.convert type, value
+      result = value
+      
+      result = value.to_i if [:integer, :sinteger, :long, :slong].include? type
+      result = value.to_f if [:float, :double].include? type
+      result = value.to_s if [:char, :widechar].include? type
+      
+      result
+    end
+    
+    
     class Node < Struct.new :nodes
       def << node
         nodes << node
@@ -20,10 +31,13 @@ module NetLinx
     
     class DefineSection < Struct.new :type; end
     
-    class Definition < Struct.new :identifier, :value, :type; end
-    class Assignment < Struct.new :identifier, :value; end
+    class Definition < Struct.new :identifier, :value, :type
+      def eval context
+        context.constants[identifier.downcase] = Parser.convert type, value
+      end
+    end
     
+    class Assignment < Struct.new :identifier, :value; end
     
   end
 end
-  
