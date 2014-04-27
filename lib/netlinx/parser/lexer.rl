@@ -84,7 +84,6 @@ end
                    /DEFINE_START/i | /DEFINE_TOGGLING/i | /DEFINE_TYPE/i | /DEFINE_VARIABLE/i |
                    /PROGRAM_NAME/i;
 
-              
   event_handler = /BUTTON_EVENT/i | /CHANNEL_EVENT/i | /DATA_EVENT/i | /LEVEL_EVENT/i | /REBUILD_EVENT/i;
 
   # String literals
