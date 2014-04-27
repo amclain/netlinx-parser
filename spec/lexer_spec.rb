@@ -48,6 +48,15 @@ describe NetLinx::Lexer do
       
     end
     
+    describe "initializer" do
+      
+      let(:code) { "DEFINE_VARIABLE\ninteger my_var = 1\n" }
+      let(:tokens) { [:define_variable, :integer, :identifier, '=', :number] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
   end
   
   

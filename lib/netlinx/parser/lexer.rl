@@ -56,6 +56,10 @@ end
   
   newline = "\n" | "\r\n";
   
+  number = [0-9]+;
+  
+  decimal = '-'?[0-9]+'.'[0-9]+;
+  
   identifier = [_a-zA-Z][_a-zA-Z0-9]*;
   
   operator = '+' | '-' | '*' | '/' | '%' |
@@ -87,6 +91,10 @@ end
     define_keyword | data_type => { add_token :"#{@data[ts...te].downcase}", @data[ts...te] };
     
     operator | '(' | ')' => { add_token @data[ts...te], @data[ts...te] };
+    
+    number => { add_token :number, @data[ts...te].to_i };
+    
+    decimal => { add_token :decimal, @data[ts...te].to_f };
     
     identifier => { add_token :identifier, @data[ts...te] };
     
