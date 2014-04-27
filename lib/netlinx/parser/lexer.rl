@@ -90,7 +90,7 @@ end
     /PROGRAM_NAME/i |
     define_keyword | data_type => { add_token :"#{@data[ts...te].downcase}", @data[ts...te] };
     
-    operator | '(' | ')' => { add_token @data[ts...te], @data[ts...te] };
+    operator | '(' | ')' | '[' | ']' | '{' | '}' => { add_token @data[ts...te], @data[ts...te] };
     
     number => { add_token :number, @data[ts...te].to_i };
     

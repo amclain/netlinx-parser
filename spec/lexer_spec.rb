@@ -57,6 +57,15 @@ describe NetLinx::Lexer do
       
     end
     
+    describe "array" do
+      
+      let(:code) { "DEFINE_VARIABLE\nchar my_var[255]\n" }
+      let(:tokens) { [:define_variable, :char, :identifier, '[', :number, ']'] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
   end
   
   
