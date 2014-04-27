@@ -37,6 +37,16 @@ describe NetLinx::Lexer do
   end
   
   
+  describe "define device" do
+    
+    let(:code) { "DEFINE_DEVICE\ndvTP = 10001:1:0\n" }
+    let(:tokens) { [:define_device, :identifier, '=', :dps] }
+    
+    include_examples "validate_tokens"
+    
+  end
+  
+  
   describe "define global variable" do
   
     describe "basic" do

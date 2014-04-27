@@ -60,6 +60,8 @@ end
   
   decimal = '-'?[0-9]+'.'[0-9]+;
   
+  dps = [0-9]+':'[0-9]+':'[0-9]+;
+  
   identifier = [_a-zA-Z][_a-zA-Z0-9]*;
   
   operator = '+' | '-' | '*' | '/' | '%' |
@@ -85,12 +87,18 @@ end
   std_comment   = '//';
   
   
+  # ----
+  # Main
+  # ----
+  
   main := |*
     
     /PROGRAM_NAME/i |
     define_keyword | data_type => { add_token :"#{@data[ts...te].downcase}", @data[ts...te] };
     
     operator | '(' | ')' | '[' | ']' | '{' | '}' => { add_token @data[ts...te], @data[ts...te] };
+    
+    dps => { add_token :dps, @data[ts...te].split(':') };
     
     number => { add_token :number, @data[ts...te].to_i };
     
@@ -137,7 +145,6 @@ end
       @buf_start = ts + 1
       fcall std_comment_body;
     };
-    
     
     any;
     
@@ -212,7 +219,6 @@ end
     any;
     
   *|;
-  
   
 }%%
 #%
