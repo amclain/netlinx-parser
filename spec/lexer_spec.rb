@@ -115,8 +115,53 @@ describe NetLinx::Lexer do
     
     describe "basic" do
       
-      let(:code) { "define_function test_function()\n{\n}\n" }
-      let(:tokens) { [:define_function, :identifier, '(', ')', '{', '}'] }
+      let(:code) { "define_function test_function()\n" }
+      let(:tokens) { [:define_function, :identifier, '(', ')'] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
+    describe "with return value" do
+      
+      let(:code) { "define_function integer test_function()\n" }
+      let(:tokens) { [:define_function, :integer, :identifier, '(', ')'] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
+    describe "returns array" do
+      
+      let(:code) { "define_function char[255] test_function()\n" }
+      let(:tokens) { [:define_function, :char, '[', :number, ']', :identifier, '(', ')'] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
+    describe "with user type" do
+      
+      let(:code) { "define_function my_type test_function()\n" }
+      let(:tokens) { [:define_function, :identifier, :identifier, '(', ')'] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
+    describe "with one parameter" do
+      
+      let(:code) { "define_function integer test_function(integer param1)\n" }
+      let(:tokens) { [:define_function, :integer, :identifier, '(', :integer, :identifier, ')'] }
+      
+      include_examples "validate_tokens"
+      
+    end
+    
+    describe "with multiple parameters" do
+      
+      let(:code) { "define_function integer test_function(integer param1, char param2)\n" }
+      let(:tokens) { [:define_function, :integer, :identifier, '(', :integer, :identifier, ',', :char, :identifier, ')'] }
       
       include_examples "validate_tokens"
       

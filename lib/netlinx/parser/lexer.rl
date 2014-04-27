@@ -97,7 +97,7 @@ end
     /DEFINE_FUNCTION/i |
     define_keyword | data_type => { add_token :"#{@data[ts...te].downcase}", @data[ts...te] };
     
-    operator | '(' | ')' | '[' | ']' | '{' | '}' => { add_token @data[ts...te], @data[ts...te] };
+    operator | '(' | ')' | '[' | ']' | '{' | '}' | ',' => { add_token @data[ts...te], @data[ts...te] };
     
     dps => { add_token :dps, @data[ts...te].split(':') };
     
