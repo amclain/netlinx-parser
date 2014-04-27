@@ -9,13 +9,17 @@ describe NetLinx::Runtime do
   let(:code) {
 <<-CODE
 PROGRAM_NAME = 'test'
+DEFINE_DEVICE
+dvTP = 10000:1:0;
 DEFINE_VARIABLE
 integer my_var = 1;
 CODE
   }
   
+  before { subject }
+  
   specify do
-    subject
+    runtime.program_name.should eq 'test'
     # require 'pry'; binding.pry
   end
   

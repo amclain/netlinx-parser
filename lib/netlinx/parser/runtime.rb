@@ -15,13 +15,21 @@ module NetLinx
     end
     
     def eval code
+      current_section = nil # Current DEFINE section, as a symbol. :define_device
+      
       ast = NetLinx::Parser.new(code).parse.nodes
       
-      pgm_name = ast.select { |n| n.is_a? NetLinx::Parser::ProgramName }.first
-      @program_name = pgm_name.value.to_s if pgm_name
-      
       ast.each do |n|
-        n.eval @root_context if n.respond_to? :eval
+        case n
+        when NetLinx::Parser::ProgramName
+          @program_name = n.value.to_s
+          
+        when NetLinx::Parser::DefineSection
+          current_section = n.type
+          
+        else
+          n.eval @root_context if n.respond_to? :eval
+        end
       end
       
       ast
