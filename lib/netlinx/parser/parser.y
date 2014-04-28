@@ -43,6 +43,7 @@ rule
     | event_handler
     | definition
     | assignment
+    | call
     ;
   
   define_section
@@ -60,6 +61,11 @@ rule
     
   block
     : '{' expressions '}'   { val[1] }
+    ;
+    
+  call
+    : IDENTIFIER '(' ')'    { Call.new val[0].downcase.to_sym, [] }
+    /* # TODO: call w/ args */
     ;
     
   event_handler

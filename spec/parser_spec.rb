@@ -101,6 +101,33 @@ CODE
   end
   
   
+  describe "function call" do
+  
+    let(:code) {
+<<-CODE
+PROGRAM_NAME = 'test'
+DEFINE_START
+update_state();
+CODE
+    }
+    
+    let(:expected) { [
+      NetLinx::Parser::ProgramName,
+      NetLinx::Parser::DefineSection,
+      NetLinx::Parser::Call
+    ] }
+    
+    specify do
+      ast.count.times { |i| subject.first[i].should be_a expected[i] }
+      
+      n = ast.last
+      n.identifier.should eq :update_state
+      n.args.should       eq []
+    end
+    
+  end
+  
+  
   describe "button_event" do
   
     let(:code) {
