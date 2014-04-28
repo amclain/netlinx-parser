@@ -51,7 +51,7 @@ describe NetLinx::Parser do
 <<-CODE
 PROGRAM_NAME = 'test'
 DEFINE_DEVICE
-dvTP = 10000:1:0;
+dv_TP = 10000:1:0;
 CODE
     }
     
@@ -65,7 +65,7 @@ CODE
       ast.count.times { |i| subject.first[i].should be_a expected[i] }
       
       n = ast.last
-      n.identifier.should eq 'dvTP'
+      n.identifier.should eq :dv_tp
       n.value.should eq NetLinx::Parser::DPS.new(10000, 1, 0)
       # n.type.should eq nil
     end
@@ -93,7 +93,7 @@ CODE
       ast.count.times { |i| subject.first[i].should be_a expected[i] }
       
       n = ast.last
-      n.identifier.should eq 'my_var'
+      n.identifier.should eq :my_var
       n.value.should eq 1
       n.type.should eq :integer
     end

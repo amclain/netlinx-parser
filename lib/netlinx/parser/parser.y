@@ -82,15 +82,15 @@ rule
     ;
   
   definition
-    : type IDENTIFIER               { Definition.new val[1], nil,    val[0].downcase.to_sym }
+    : type IDENTIFIER               { Definition.new val[1].downcase.to_sym, nil,    val[0].downcase.to_sym }
     /* # TODO: handling of char[] is different from integer[] or char[][] */
     /* #       in fact, arrays can be nested to 5 dimensions in NetLinx   */
-    | type IDENTIFIER '[' value ']' { Definition.new val[1], Array.new(val[3].to_i, nil), val[0].downcase.to_sym }
-    | type IDENTIFIER '=' value     { Definition.new val[1], val[3], val[0].downcase.to_sym }
+    | type IDENTIFIER '[' value ']' { Definition.new val[1].downcase.to_sym, Array.new(val[3].to_i, nil), val[0].downcase.to_sym }
+    | type IDENTIFIER '=' value     { Definition.new val[1].downcase.to_sym, val[3], val[0].downcase.to_sym }
     ;
   
   assignment
-    : IDENTIFIER '=' value          { Assignment.new val[0], val[2] }
+    : IDENTIFIER '=' value          { Assignment.new val[0].downcase.to_sym, val[2] }
     ;
     
   comparison

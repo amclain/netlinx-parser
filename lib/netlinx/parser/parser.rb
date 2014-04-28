@@ -453,25 +453,25 @@ module_eval(<<'.,.,', 'parser.y', 72)
 
 module_eval(<<'.,.,', 'parser.y', 84)
   def _reduce_32(val, _values)
-     Definition.new val[1], nil,    val[0].downcase.to_sym 
+     Definition.new val[1].downcase.to_sym, nil,    val[0].downcase.to_sym 
   end
 .,.,
 
 module_eval(<<'.,.,', 'parser.y', 87)
   def _reduce_33(val, _values)
-     Definition.new val[1], Array.new(val[3].to_i, nil), val[0].downcase.to_sym 
+     Definition.new val[1].downcase.to_sym, Array.new(val[3].to_i, nil), val[0].downcase.to_sym 
   end
 .,.,
 
 module_eval(<<'.,.,', 'parser.y', 88)
   def _reduce_34(val, _values)
-     Definition.new val[1], val[3], val[0].downcase.to_sym 
+     Definition.new val[1].downcase.to_sym, val[3], val[0].downcase.to_sym 
   end
 .,.,
 
 module_eval(<<'.,.,', 'parser.y', 92)
   def _reduce_35(val, _values)
-     Assignment.new val[0], val[2] 
+     Assignment.new val[0].downcase.to_sym, val[2] 
   end
 .,.,
 
