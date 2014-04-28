@@ -36,13 +36,8 @@ rule
     | /* none */             { }
     ;
   
-  comments
-    : comments COMMENT
-    | COMMENT                   { @ignore_comments ? nil : Comment.new(val[0]) }
-    ;
-  
   expression
-    : comments
+    : COMMENT                   { Comment.new(val[0]) unless @ignore_comments }
     | PROGRAM_NAME '=' STRING   { ProgramName.new val[2] }
     | define_section            { DefineSection.new val[0].downcase.to_sym }
     | definition
@@ -63,12 +58,15 @@ rule
     ;
   
   definition
-    : type IDENTIFIER           { Definition.new val[1], val[0], nil }
-    | type IDENTIFIER '=' value { Definition.new val[1], val[3], val[0].downcase.to_sym }
+    : type IDENTIFIER               { Definition.new val[1], nil,    val[0].downcase.to_sym }
+    /* # TODO: handling of char[] is different from integer[] or char[][] */
+    /* #       in fact, arrays can be nested to 5 dimensions in NetLinx   */
+    | type IDENTIFIER '[' value ']' { Definition.new val[1], Array.new(val[3].to_i, nil), val[0].downcase.to_sym }
+    | type IDENTIFIER '=' value     { Definition.new val[1], val[3], val[0].downcase.to_sym }
     ;
   
   assignment
-    : IDENTIFIER '=' value      { Assignment.new val[0], val[2] }
+    : IDENTIFIER '=' value          { Assignment.new val[0], val[2] }
     ;
     
   comparison
@@ -120,7 +118,6 @@ require 'netlinx/parser/nodes'
     @lexer = NetLinx::Lexer.new data
     # Convert all token names to uppercase.
     @tokens = @lexer.run.map! { |t| [t[0].upcase, t[1]] }
-    # p @tokens
   end
   
   def parse

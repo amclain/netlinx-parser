@@ -14,6 +14,7 @@ DEFINE_DEVICE
 dvTP = 10000:1:0;
 DEFINE_VARIABLE
 integer my_var = 1;
+char str[8];
 CODE
   }
   
