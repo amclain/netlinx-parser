@@ -15,6 +15,10 @@ module NetLinx
     end
     
     def eval code
+      # -------------------------------------------
+      # TODO: This is a great job for state_machine
+      # -------------------------------------------
+      
       current_section = nil # Current DEFINE section, as a symbol. :define_device
       
       ast = NetLinx::Parser.new(code).parse.nodes
