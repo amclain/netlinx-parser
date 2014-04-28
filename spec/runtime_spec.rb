@@ -3,8 +3,9 @@ require 'netlinx/parser/runtime'
 
 describe NetLinx::Runtime do
   
-  let(:runtime) { NetLinx::Runtime.new }
-  subject { runtime.eval(code) }
+  subject { NetLinx::Runtime.new }
+  
+  let(:ast) { subject.eval(code) }
   
   let(:code) {
 <<-CODE
@@ -16,10 +17,10 @@ integer my_var = 1;
 CODE
   }
   
-  before { subject }
+  before { ast }
   
   specify do
-    runtime.program_name.should eq 'test'
+    subject.program_name.should eq 'test'
     # require 'pry'; binding.pry
   end
   
