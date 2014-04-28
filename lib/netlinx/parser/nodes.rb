@@ -36,5 +36,7 @@ module NetLinx
       end
     end
     
+    class EventHandler < Struct.new :type, :device, :channel; end
+    
   end
 end

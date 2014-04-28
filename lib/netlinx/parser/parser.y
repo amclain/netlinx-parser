@@ -40,6 +40,7 @@ rule
     : COMMENT                   { Comment.new(val[0]) unless @ignore_comments }
     | PROGRAM_NAME '=' STRING   { ProgramName.new val[2] }
     | define_section            { DefineSection.new val[0].downcase.to_sym }
+    | event_handler
     | definition
     | assignment
     ;
@@ -55,6 +56,20 @@ rule
     | DEFINE_TOGGLING
     | DEFINE_TYPE
     | DEFINE_VARIABLE
+    ;
+    
+    
+  event_handler
+    : event_handler_type '[' IDENTIFIER ']'                { EventHandler.new val[0].downcase.to_sym, val[2].downcase.to_sym, nil }
+    | event_handler_type '[' IDENTIFIER ',' IDENTIFIER ']' { EventHandler.new val[0].downcase.to_sym, val[2].downcase.to_sym, val[4].downcase.to_sym }
+    ;
+    
+  event_handler_type
+    : BUTTON_EVENT
+    | CHANNEL_EVENT
+    | DATA_EVENT
+    | LEVEL_EVENT
+    | REBUILD_EVENT
     ;
   
   definition

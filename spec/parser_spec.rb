@@ -39,7 +39,7 @@ describe NetLinx::Parser do
     ] }
     
     specify do
-      subject.count.times { |i| subject.first[i].should be_a expected[i] }
+      ast.count.times { |i| subject.first[i].should be_a expected[i] }
     end
     
   end
@@ -62,12 +62,12 @@ CODE
     ] }
     
     specify do
-      subject.count.times { |i| subject.first[i].should be_a expected[i] }
+      ast.count.times { |i| subject.first[i].should be_a expected[i] }
       
-      asgn = ast.last
-      asgn.identifier.should eq 'dvTP'
-      asgn.value.should eq NetLinx::Parser::DPS.new(10000, 1, 0)
-      # asgn.type.should eq nil
+      n = ast.last
+      n.identifier.should eq 'dvTP'
+      n.value.should eq NetLinx::Parser::DPS.new(10000, 1, 0)
+      # n.type.should eq nil
     end
     
   end
@@ -90,12 +90,43 @@ CODE
     ] }
     
     specify do
-      subject.count.times { |i| subject.first[i].should be_a expected[i] }
+      ast.count.times { |i| subject.first[i].should be_a expected[i] }
       
-      asgn = ast.last
-      asgn.identifier.should eq 'my_var'
-      asgn.value.should eq 1
-      asgn.type.should eq :integer
+      n = ast.last
+      n.identifier.should eq 'my_var'
+      n.value.should eq 1
+      n.type.should eq :integer
+    end
+    
+  end
+  
+  
+  describe "button_event" do
+  
+    let(:code) {
+<<-CODE
+PROGRAM_NAME = 'test'
+DEFINE_EVENT
+button_event[dv_TP, BTN_DVD_PLAY]
+//{
+//  doStuff();
+//}
+CODE
+    }
+    
+    let(:expected) { [
+      NetLinx::Parser::ProgramName,
+      NetLinx::Parser::DefineSection,
+      NetLinx::Parser::EventHandler
+    ] }
+    
+    specify do
+      ast.count.times { |i| subject.first[i].should be_a expected[i] }
+      
+      n = ast.last
+      n.type.should    eq :button_event
+      n.device.should  eq :dv_tp
+      n.channel.should eq :btn_dvd_play
     end
     
   end
