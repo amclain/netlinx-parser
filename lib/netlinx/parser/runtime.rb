@@ -35,6 +35,10 @@ module NetLinx
       ast
     end
     
+    def constants
+      @root_context.constants
+    end
+    
   end
   
 end

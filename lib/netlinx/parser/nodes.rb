@@ -26,13 +26,13 @@ module NetLinx
     
     class Definition < Struct.new :identifier, :value, :type
       def eval context
-        context.constants[identifier.downcase] = value
+        context.constants[identifier.downcase.to_sym] = value
       end
     end
     
     class Assignment < Struct.new :identifier, :value
       def eval context
-        context.constants[identifier.downcase] = value
+        context.constants[identifier.downcase.to_sym] = value
       end
     end
     
