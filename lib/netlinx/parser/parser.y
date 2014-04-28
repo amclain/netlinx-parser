@@ -58,6 +58,9 @@ rule
     | DEFINE_VARIABLE
     ;
     
+  block
+    : '{' expressions '}'   { val[1] }
+    ;
     
   event_handler
     : event_handler_type '[' IDENTIFIER ']'                { EventHandler.new val[0].downcase.to_sym, val[2].downcase.to_sym, nil }
