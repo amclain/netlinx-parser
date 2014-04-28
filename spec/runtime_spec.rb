@@ -35,4 +35,22 @@ CODE
     
   end
   
+  
+  describe "function call" do
+  
+    let(:code) {
+<<-CODE
+PROGRAM_NAME = 'test'
+DEFINE_START
+amx_log(amx_error, 'success');
+CODE
+    }
+    
+    specify do
+      subject.program_name.should eq 'test'
+      # TODO ######################################################
+    end
+    
+  end
+  
 end

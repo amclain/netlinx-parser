@@ -64,13 +64,13 @@ rule
     ;
     
   call
-    : IDENTIFIER '(' ')'    { Call.new val[0].downcase.to_sym, [] }
-    /* # TODO: call w/ args */
+    : identifier '(' ')'            { Call.new val[0], [] }
+    | identifier '(' arguments ')'  { Call.new val[0], val[2] }
     ;
     
   event_handler
-    : event_handler_type '[' IDENTIFIER ']'                { EventHandler.new val[0].downcase.to_sym, val[2].downcase.to_sym, nil }
-    | event_handler_type '[' IDENTIFIER ',' IDENTIFIER ']' { EventHandler.new val[0].downcase.to_sym, val[2].downcase.to_sym, val[4].downcase.to_sym }
+    : event_handler_type '[' identifier ']'                { EventHandler.new val[0].downcase.to_sym, val[2], nil }
+    | event_handler_type '[' identifier ',' identifier ']' { EventHandler.new val[0].downcase.to_sym, val[2], val[4] }
     ;
     
   event_handler_type
@@ -82,32 +82,46 @@ rule
     ;
   
   definition
-    : type IDENTIFIER               { Definition.new val[1].downcase.to_sym, nil,    val[0].downcase.to_sym }
+    : type identifier               { Definition.new val[1], nil, val[0] }
     /* # TODO: handling of char[] is different from integer[] or char[][] */
     /* #       in fact, arrays can be nested to 5 dimensions in NetLinx   */
-    | type IDENTIFIER '[' value ']' { Definition.new val[1].downcase.to_sym, Array.new(val[3].to_i, nil), val[0].downcase.to_sym }
-    | type IDENTIFIER '=' value     { Definition.new val[1].downcase.to_sym, val[3], val[0].downcase.to_sym }
+    | type identifier '[' value ']' { Definition.new val[1], Array.new(val[3].to_i, nil), val[0] }
+    | type identifier '=' value     { Definition.new val[1], val[3], val[0] }
     ;
   
   assignment
-    : IDENTIFIER '=' value          { Assignment.new val[0].downcase.to_sym, val[2] }
+    : identifier '=' value          { Assignment.new val[0], val[2] }
     ;
     
   comparison
     : 
     ;
     
+  arguments
+    : arguments ',' argument  { val[0] << val[2] }
+    | argument                { [val[0]] }
+    ;
+  
+  argument
+    : identifier
+    | value
+    ;
+    
+  identifier
+    : IDENTIFIER      { val[0].downcase.to_sym }
+    ;
+    
   type
-    : CHAR
-    | WIDECHAR
-    | INTEGER
-    | SINTEGER
-    | LONG
-    | SLONG
-    | FLOAT
-    | DOUBLE
-    | DEV
-    | DEVCHAN
+    : CHAR     { val[0].downcase.to_sym }
+    | WIDECHAR { val[0].downcase.to_sym }
+    | INTEGER  { val[0].downcase.to_sym }
+    | SINTEGER { val[0].downcase.to_sym }
+    | LONG     { val[0].downcase.to_sym }
+    | SLONG    { val[0].downcase.to_sym }
+    | FLOAT    { val[0].downcase.to_sym }
+    | DOUBLE   { val[0].downcase.to_sym }
+    | DEV      { val[0].downcase.to_sym }
+    | DEVCHAN  { val[0].downcase.to_sym }
     ;
     
   value

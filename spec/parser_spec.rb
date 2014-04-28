@@ -103,26 +103,56 @@ CODE
   
   describe "function call" do
   
-    let(:code) {
+    describe "without args" do
+  
+      let(:code) {
 <<-CODE
 PROGRAM_NAME = 'test'
 DEFINE_START
 update_state();
 CODE
-    }
-    
-    let(:expected) { [
-      NetLinx::Parser::ProgramName,
-      NetLinx::Parser::DefineSection,
-      NetLinx::Parser::Call
-    ] }
-    
-    specify do
-      ast.count.times { |i| subject.first[i].should be_a expected[i] }
+      }
       
-      n = ast.last
-      n.identifier.should eq :update_state
-      n.args.should       eq []
+      let(:expected) { [
+        NetLinx::Parser::ProgramName,
+        NetLinx::Parser::DefineSection,
+        NetLinx::Parser::Call
+      ] }
+      
+      specify do
+        ast.count.times { |i| subject.first[i].should be_a expected[i] }
+        
+        n = ast.last
+        n.identifier.should eq :update_state
+        n.args.should       eq []
+      end
+      
+    end
+    
+    describe "with args" do
+      
+      let(:code) {
+<<-CODE
+PROGRAM_NAME = 'test'
+DEFINE_START
+update_state(param1, param2, 'success');
+CODE
+      }
+      
+      let(:expected) { [
+        NetLinx::Parser::ProgramName,
+        NetLinx::Parser::DefineSection,
+        NetLinx::Parser::Call
+      ] }
+      
+      specify do
+        ast.count.times { |i| subject.first[i].should be_a expected[i] }
+        
+        n = ast.last
+        n.identifier.should eq :update_state
+        n.args.should       eq [:param1, :param2, 'success']
+      end
+      
     end
     
   end
