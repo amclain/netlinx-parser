@@ -33,7 +33,6 @@ rule
   expressions
     : expressions expression { val.flatten.compact }
     | expression             { val }
-    | /* none */             { }
     ;
   
   expression

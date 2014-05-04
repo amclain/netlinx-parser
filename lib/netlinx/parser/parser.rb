@@ -12,7 +12,7 @@ require 'netlinx/parser/nodes'
 module NetLinx
   class Parser < Racc::Parser
 
-module_eval(<<'...end parser.y/module_eval...', 'parser.y', 151)
+module_eval(<<'...end parser.y/module_eval...', 'parser.y', 150)
 
   def initialize data, ignore_comments: true
     @data = data
@@ -73,14 +73,14 @@ racc_action_pointer = [
    nil,   nil ]
 
 racc_action_default = [
-    -2,   -57,    -1,    -4,    -6,   -57,    -8,    -9,   -10,   -11,
-   -12,   -13,   -14,   -15,   -16,   -17,   -18,   -19,   -20,   -21,
-   -22,   -57,   -57,   -28,   -29,   -30,   -31,   -32,   -57,   -42,
-   -43,   -44,   -45,   -46,   -47,   -48,   -49,   -50,   -51,   -52,
-   -57,    -3,   -57,   -57,   -57,   -57,   -33,    72,    -7,   -24,
-   -57,   -39,   -40,   -41,   -53,   -54,   -55,   -56,   -36,   -57,
-   -57,   -57,   -25,   -57,   -26,   -57,   -57,   -35,   -38,   -57,
-   -34,   -27 ]
+    -2,   -56,    -1,    -4,    -5,   -56,    -7,    -8,    -9,   -10,
+   -11,   -12,   -13,   -14,   -15,   -16,   -17,   -18,   -19,   -20,
+   -21,   -56,   -56,   -27,   -28,   -29,   -30,   -31,   -56,   -41,
+   -42,   -43,   -44,   -45,   -46,   -47,   -48,   -49,   -50,   -51,
+   -56,    -3,   -56,   -56,   -56,   -56,   -32,    72,    -6,   -23,
+   -56,   -38,   -39,   -40,   -52,   -53,   -54,   -55,   -35,   -56,
+   -56,   -56,   -24,   -56,   -25,   -56,   -56,   -34,   -37,   -56,
+   -33,   -26 ]
 
 racc_goto_table = [
     46,    51,    58,     3,    50,    41,     2,     1,   nil,   nil,
@@ -108,10 +108,9 @@ racc_reduce_table = [
   0, 75, :_reduce_2,
   2, 76, :_reduce_3,
   1, 76, :_reduce_4,
-  0, 76, :_reduce_5,
-  1, 77, :_reduce_6,
-  3, 77, :_reduce_7,
-  1, 77, :_reduce_8,
+  1, 77, :_reduce_5,
+  3, 77, :_reduce_6,
+  1, 77, :_reduce_7,
   1, 77, :_reduce_none,
   1, 77, :_reduce_none,
   1, 77, :_reduce_none,
@@ -126,26 +125,27 @@ racc_reduce_table = [
   1, 78, :_reduce_none,
   1, 78, :_reduce_none,
   1, 78, :_reduce_none,
-  3, 83, :_reduce_23,
-  3, 82, :_reduce_24,
-  4, 82, :_reduce_25,
-  4, 79, :_reduce_26,
-  6, 79, :_reduce_27,
+  3, 83, :_reduce_22,
+  3, 82, :_reduce_23,
+  4, 82, :_reduce_24,
+  4, 79, :_reduce_25,
+  6, 79, :_reduce_26,
   1, 86, :_reduce_none,
   1, 86, :_reduce_none,
   1, 86, :_reduce_none,
   1, 86, :_reduce_none,
   1, 86, :_reduce_none,
-  2, 80, :_reduce_33,
-  5, 80, :_reduce_34,
-  4, 80, :_reduce_35,
-  3, 81, :_reduce_36,
+  2, 80, :_reduce_32,
+  5, 80, :_reduce_33,
+  4, 80, :_reduce_34,
+  3, 81, :_reduce_35,
   0, 89, :_reduce_none,
-  3, 85, :_reduce_38,
-  1, 85, :_reduce_39,
+  3, 85, :_reduce_37,
+  1, 85, :_reduce_38,
   1, 90, :_reduce_none,
   1, 90, :_reduce_none,
-  1, 84, :_reduce_42,
+  1, 84, :_reduce_41,
+  1, 87, :_reduce_42,
   1, 87, :_reduce_43,
   1, 87, :_reduce_44,
   1, 87, :_reduce_45,
@@ -155,13 +155,12 @@ racc_reduce_table = [
   1, 87, :_reduce_49,
   1, 87, :_reduce_50,
   1, 87, :_reduce_51,
-  1, 87, :_reduce_52,
+  1, 88, :_reduce_52,
   1, 88, :_reduce_53,
   1, 88, :_reduce_54,
-  1, 88, :_reduce_55,
-  1, 88, :_reduce_56 ]
+  1, 88, :_reduce_55 ]
 
-racc_reduce_n = 57
+racc_reduce_n = 56
 
 racc_shift_n = 72
 
@@ -384,29 +383,25 @@ module_eval(<<'.,.,', 'parser.y', 34)
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 35)
+module_eval(<<'.,.,', 'parser.y', 38)
   def _reduce_5(val, _values)
-     
+     Comment.new(val[0]) unless @ignore_comments 
   end
 .,.,
 
 module_eval(<<'.,.,', 'parser.y', 39)
   def _reduce_6(val, _values)
-     Comment.new(val[0]) unless @ignore_comments 
+     ProgramName.new val[2] 
   end
 .,.,
 
 module_eval(<<'.,.,', 'parser.y', 40)
   def _reduce_7(val, _values)
-     ProgramName.new val[2] 
-  end
-.,.,
-
-module_eval(<<'.,.,', 'parser.y', 41)
-  def _reduce_8(val, _values)
      DefineSection.new val[0].downcase.to_sym 
   end
 .,.,
+
+# reduce 8 omitted
 
 # reduce 9 omitted
 
@@ -434,37 +429,37 @@ module_eval(<<'.,.,', 'parser.y', 41)
 
 # reduce 21 omitted
 
-# reduce 22 omitted
-
-module_eval(<<'.,.,', 'parser.y', 62)
-  def _reduce_23(val, _values)
+module_eval(<<'.,.,', 'parser.y', 61)
+  def _reduce_22(val, _values)
      val[1] 
+  end
+.,.,
+
+module_eval(<<'.,.,', 'parser.y', 65)
+  def _reduce_23(val, _values)
+     Call.new val[0], [] 
   end
 .,.,
 
 module_eval(<<'.,.,', 'parser.y', 66)
   def _reduce_24(val, _values)
-     Call.new val[0], [] 
+     Call.new val[0], val[2] 
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 67)
+module_eval(<<'.,.,', 'parser.y', 70)
   def _reduce_25(val, _values)
-     Call.new val[0], val[2] 
+     EventHandler.new val[0].downcase.to_sym, val[2], nil 
   end
 .,.,
 
 module_eval(<<'.,.,', 'parser.y', 71)
   def _reduce_26(val, _values)
-     EventHandler.new val[0].downcase.to_sym, val[2], nil 
-  end
-.,.,
-
-module_eval(<<'.,.,', 'parser.y', 72)
-  def _reduce_27(val, _values)
      EventHandler.new val[0].downcase.to_sym, val[2], val[4] 
   end
 .,.,
+
+# reduce 27 omitted
 
 # reduce 28 omitted
 
@@ -474,51 +469,55 @@ module_eval(<<'.,.,', 'parser.y', 72)
 
 # reduce 31 omitted
 
-# reduce 32 omitted
-
-module_eval(<<'.,.,', 'parser.y', 84)
-  def _reduce_33(val, _values)
+module_eval(<<'.,.,', 'parser.y', 83)
+  def _reduce_32(val, _values)
      Definition.new val[1], nil, val[0] 
+  end
+.,.,
+
+module_eval(<<'.,.,', 'parser.y', 86)
+  def _reduce_33(val, _values)
+     Definition.new val[1], Array.new(val[3].to_i, nil), val[0] 
   end
 .,.,
 
 module_eval(<<'.,.,', 'parser.y', 87)
   def _reduce_34(val, _values)
-     Definition.new val[1], Array.new(val[3].to_i, nil), val[0] 
-  end
-.,.,
-
-module_eval(<<'.,.,', 'parser.y', 88)
-  def _reduce_35(val, _values)
      Definition.new val[1], val[3], val[0] 
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 92)
-  def _reduce_36(val, _values)
+module_eval(<<'.,.,', 'parser.y', 91)
+  def _reduce_35(val, _values)
      Assignment.new val[0], val[2] 
   end
 .,.,
 
-# reduce 37 omitted
+# reduce 36 omitted
 
-module_eval(<<'.,.,', 'parser.y', 100)
-  def _reduce_38(val, _values)
+module_eval(<<'.,.,', 'parser.y', 99)
+  def _reduce_37(val, _values)
      val[0] << val[2] 
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 101)
-  def _reduce_39(val, _values)
+module_eval(<<'.,.,', 'parser.y', 100)
+  def _reduce_38(val, _values)
      [val[0]] 
   end
 .,.,
 
+# reduce 39 omitted
+
 # reduce 40 omitted
 
-# reduce 41 omitted
+module_eval(<<'.,.,', 'parser.y', 109)
+  def _reduce_41(val, _values)
+     val[0].downcase.to_sym 
+  end
+.,.,
 
-module_eval(<<'.,.,', 'parser.y', 110)
+module_eval(<<'.,.,', 'parser.y', 113)
   def _reduce_42(val, _values)
      val[0].downcase.to_sym 
   end
@@ -578,32 +577,26 @@ module_eval(<<'.,.,', 'parser.y', 122)
   end
 .,.,
 
-module_eval(<<'.,.,', 'parser.y', 123)
+module_eval(<<'.,.,', 'parser.y', 126)
   def _reduce_52(val, _values)
-     val[0].downcase.to_sym 
+     DPS.new *(val[0].map &:to_i) 
   end
 .,.,
 
 module_eval(<<'.,.,', 'parser.y', 127)
   def _reduce_53(val, _values)
-     DPS.new *(val[0].map &:to_i) 
+     val[0].to_i 
   end
 .,.,
 
 module_eval(<<'.,.,', 'parser.y', 128)
   def _reduce_54(val, _values)
-     val[0].to_i 
+     val[0].to_f 
   end
 .,.,
 
 module_eval(<<'.,.,', 'parser.y', 129)
   def _reduce_55(val, _values)
-     val[0].to_f 
-  end
-.,.,
-
-module_eval(<<'.,.,', 'parser.y', 130)
-  def _reduce_56(val, _values)
      val[0].to_s 
   end
 .,.,
